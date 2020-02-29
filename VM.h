@@ -1,0 +1,7 @@
+class VM{
+public:
+    
+
+private:
+
+}
