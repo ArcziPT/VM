@@ -12,8 +12,8 @@ public:
     void parse(const std::string& config);
 
 private:
-    std::unordered_map<std::string, std::string> split_into_sections(const std::string& config);
-
+    std::unordered_map<std::string, std::vector<std::string>> split_into_sections(const std::string& config);
+    RegisterConfig parse_reg_config(const std::string& config);
 
     VMConfig config;
 };
