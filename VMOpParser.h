@@ -6,23 +6,30 @@
 #include <map>
 #include <functional>
 
-#include "VMRegisters.h"
+#include "VMOp.h"
 #include "ConfigParser.h"
+#include "utils.h"
 
 using opcode = uint64_t;
 
 struct OpConfig{
     opcode opc;
     std::string mnemonic;
-    std::function<void(VMRegisters&, VMMem&, std::vector<uint64_t>) op;
+
+    //vector contains argument's data in bytes
+    //std::function<void(std::vector<uint8_t>&)> op;
+
+    std::unique_ptr<VMOp> vm_op;
 };
 
 class VMOpParser{
 public:
+    VMOpParser(VMRegisters& vmr, VMMem& vmm): vmr(vmr), vmm(vmm) {};
     void parse(VMConfig& config, const std::vector<std::string>& lines);
 
 private:
-    std::function<void(VMRegisters&, VMMem&, std::vector<uint64_t>)> parse_op_func(const std::string& args, const std::string& func);
+    VMRegisters& vmr;
+    VMMem& vmm;
 };
 
 #endif
