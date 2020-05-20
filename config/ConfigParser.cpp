@@ -25,27 +25,24 @@ std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_in
     //TODO: split config by '\n'
 
 
-    auto insert_section_if_valid = [&sections](const std::string& s_name, const std::vector<std::string>& s) -> void{
+    auto insert_section_if_valid = [&sections](const std::string& s_name, const std::string& s) -> void{
         if(s_name != ""){
-            sections.insert({s_name, s});
+            if(sections.count(s_name) == 0)
+                sections[s_name] = std::vector<std::string>{};
+            sections[s_name].push_back(s);
         }
     };
+
     std::string section_name = "";
-    std::vector<std::string> section;
+    std::string section;
     for(auto& line : lines){
-        //if line has ':' at the end add treat next lines 
-        //as a one section until an eof or the next such a case
-        /*if(){
+        int pos = line.find(' ');
+        if(pos != std::string::npos){
+            section_name = std::string(line.begin(), line.begin() + pos);
+            section = std::string(line.begin() + pos, line.end());
             insert_section_if_valid(section_name, section);
-            section.clear();
-
-            section_name = line;
-        }else{
-            section.push_back(line);
-        }*/
+        }
     }
-
-    insert_section_if_valid(section_name, section);
 
     return sections;
 }
