@@ -13,6 +13,10 @@ public:
     VMRegisters(const std::vector<Register>& registers);
 
     Register& operator[](reg_code r);
+    Register& VMRegisters::operator[](const std::string& r_name);
+
+    bool contains(reg_code r);
+    bool contains(const std::string& r_name);
 
     void set_value(reg_code r, reg_val val);
     reg_val read_value(reg_code r);
@@ -24,7 +28,9 @@ public:
     void inc_ip(reg_val delta);
 
 private:
-    std::map<reg_code, Register> registers;
+    std::vector<Register> registers;
+    std::map<reg_code, Register*> c_registers;
+    std::map<std::string, Register*> n_registers;
 
     //special purpose registers
     Register* ip_reg = nullptr;

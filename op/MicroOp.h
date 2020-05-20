@@ -1,8 +1,8 @@
-#ifndef VM_OP_H
-#define VM_OP_H
+#ifndef MICRO_OP_H
+#define MICRO_OP_H
 
-#include "VMMem.h"
-#include "utils.h"
+#include <vector>
+#include <stdint.h>
 
 namespace Args{
     enum Type{
@@ -23,7 +23,8 @@ namespace Args{
     struct Info{
         std::string name;
         Type type;
-        reg_val val;
+        int pos;
+        int sz;
     };
 
     static std::map<std::string, Type> type_map = {
@@ -57,20 +58,9 @@ namespace Args{
     };
 }
 
-class VMOp{
+class MicroOp{
 public:
-    VMOp(VMRegisters& vmr, VMMem& vmm, std::vector<std::string>& values);
-
-    void operator()(std::vector<uint8_t>& bytes);
-
-private:
-    VMRegisters& vmr;
-    VMMem& vmm;
-
-    void extract_args_values(std::vector<uint8_t>& bytes);
-
-    std::vector<Args::Info> args_info;
-    //std::vector<std::function<void(std::vector<uint8_t>&)>> inst_seq;
+    virtual void operator()(const std::vector<uint8_t>& bytes) = 0;
 };
 
 #endif

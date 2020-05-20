@@ -1,7 +1,7 @@
 #ifndef VM_MEM_H
 #define VM_MEM_H
 
-#include "VMRegisters.h"
+#include "registers/VMRegisters.h"
 
 using mem_add = uint64_t;
 

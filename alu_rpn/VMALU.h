@@ -17,4 +17,4 @@ private:
     VMRegisters& vm_registers;
 
     void check_overflow(reg_val v, reg_code r);
-}
+};
