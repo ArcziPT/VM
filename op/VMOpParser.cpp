@@ -44,6 +44,7 @@ void VMOpParser::parse(VMConfig& config, const std::string& line){
 
     try{
         opc = stoi(values[0]);
+        name = values[1];
     }
     catch(const std::exception& e){
         std::cout<<"Invalid argument for opcode (not a number) in:\n"<<line<<std::endl;
