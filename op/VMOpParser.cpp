@@ -35,7 +35,7 @@
  */
 
 
-void VMOpParser::parse(VMConfig& config, const std::string& line){
+OpConfig VMOpParser::parse(const std::string& line){
     std::vector<std::string> values;
     split(line, values);
 
@@ -59,5 +59,5 @@ void VMOpParser::parse(VMConfig& config, const std::string& line){
         
     }
 
-    config.ops_symtable[opc] = OpConfig(opc, name, std::make_unique<VMOp>(rpn_calc, vmr, vmm, values));
+    return OpConfig(opc, name, std::make_unique<VMOp>(rpn_calc, vmr, vmm, values));
 }

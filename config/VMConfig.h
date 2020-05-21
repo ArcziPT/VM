@@ -8,6 +8,7 @@
 struct RegisterConfig{
     std::string name;
     reg_sz sz;
+    reg_code code;
     Register::reg_type type;
 };
 
@@ -33,6 +34,8 @@ struct VMConfig{
     std::map<std::string, RegisterConfig> registers_symtable;
     std::map<opcode, OpConfig> ops_symtable;
 
-    RPN_Calculator rpn_calc;
+    std::unique_ptr<RPN_Calculator> rpn_calc;
+    std::unique_ptr<VMRegisters> vmr;
+    std::unique_ptr<VMMem> vmm;
     //TODO: VMConfig
 };

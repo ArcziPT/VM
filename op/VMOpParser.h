@@ -15,7 +15,7 @@
 class VMOpParser{
 public:
     VMOpParser(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm): rpn_calc(rpn_calc), vmr(vmr), vmm(vmm) {};
-    void parse(VMConfig& config, const std::string& lines);
+    OpConfig parse(const std::string& line);
 
 private:
     VMRegisters& vmr;

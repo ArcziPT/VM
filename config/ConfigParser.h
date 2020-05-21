@@ -9,13 +9,11 @@
 
 class ConfigParser{
 public:
-    void parse(const std::string& config);
+    std::unique_ptr<VMConfig> parse(const std::string& input);
 
 private:
-    std::unordered_map<std::string, std::vector<std::string>> split_into_sections(const std::string& config);
-    RegisterConfig parse_reg_config(const std::string& config);
-
-    VMConfig config;
+    std::unordered_map<std::string, std::vector<std::string>> split_into_sections(const std::string& input);
+    RegisterConfig parse_reg_config(const std::string& input);
 };
 
 #endif
