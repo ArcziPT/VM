@@ -27,6 +27,8 @@ public:
 
     void inc_ip(reg_val delta);
 
+    Register& get_ip_reg();
+
 private:
     std::vector<Register> registers;
     std::map<reg_code, Register*> c_registers;
