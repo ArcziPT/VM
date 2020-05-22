@@ -10,7 +10,7 @@ class VMMem{
 public:
     VMMem(uint32_t mem_sz);
 
-    byte read(mem_add add);
+    reg_val read(mem_add add, int nbytes);
     std::vector<byte> read_bytes(mem_add add, int n_bytes);
     void set(mem_add add, reg_val val, int nbytes);
     void set(mem_add add, byte* bytes, int nbytes);

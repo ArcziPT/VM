@@ -25,6 +25,15 @@ void VM::run(const std::string& exe_path, mem_add start_add){
     while(*exit_flag != true){
         opcode opc = config->vmm->read(ip_reg.get_value(), config->opc_sz);
 
+        if(config->ops_symtable.count(opc) == 0)
+            return; //error
+
+        auto& op = config->ops_symtable[opc];
         
+        std::vector<byte> args = config->vmm->read_bytes(ip_reg.get_value() + config->opc_sz, op.args_sz_bytes);
+        ip_reg.set_value(ip_reg.get_value() + config->opc_sz + op.args_sz_bytes);
+
+        //execute op
+        (*op.vm_op)(args);
     }
 }

@@ -18,14 +18,14 @@ struct OpConfig{
     opcode opc;
     std::string mnemonic;
 
-    //vector contains argument's data in bytes
-    //std::function<void(std::vector<uint8_t>&)> op;
+    int args_sz_bytes;
 
     std::unique_ptr<VMOp> vm_op;
 
-    OpConfig(opcode opc, std::string& name, std::unique_ptr<VMOp> vm_op){
+    OpConfig(opcode opc, std::string& name, int arg_sz_bytes, std::unique_ptr<VMOp> vm_op){
         this->opc = opc;
         this->mnemonic = name;
+        this->args_sz_bytes = arg_sz_bytes;
         this->vm_op = std::move(vm_op);
     }
 };

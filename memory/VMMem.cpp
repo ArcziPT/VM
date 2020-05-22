@@ -11,10 +11,17 @@ VMMem::VMMem(uint32_t mem_sz){
     mem = new byte[mem_sz];
 }
 
-byte VMMem::read(mem_add add){
+reg_val VMMem::read(mem_add add, int nbytes){
     if(add > mem_sz)
+        return;
 
-    return *(mem+add);
+    reg_val v = 0;
+    for(int i=0; i<nbytes; i++){
+        v<<8;
+        v += *(mem+add+i);
+    }
+
+    return v;
 }
 
 std::vector<byte> VMMem::read_bytes(mem_add add, int nbytes){
