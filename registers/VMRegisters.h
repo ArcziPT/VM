@@ -29,6 +29,10 @@ public:
 
     Register& get_ip_reg();
 
+    //
+    void set_exit_flag();
+    bool* get_exit_flag();
+
 private:
     std::vector<Register> registers;
     std::map<reg_code, Register*> c_registers;
@@ -37,4 +41,6 @@ private:
     //special purpose registers
     Register* ip_reg = nullptr;
     Register* flag_reg = nullptr;
+
+    bool exit_flag = false;
 };

@@ -38,4 +38,6 @@ struct VMConfig{
     std::unique_ptr<VMRegisters> vmr;
     std::unique_ptr<VMMem> vmm;
     //TODO: VMConfig
+
+    int opc_sz;
 };

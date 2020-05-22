@@ -65,3 +65,11 @@ reg_sz VMRegisters::get_sz(reg_code r){
 Register& VMRegisters::get_ip_reg(){
     return *ip_reg;
 }
+
+void VMRegisters::set_exit_flag(){
+    exit_flag = true;
+}
+
+bool* VMRegisters::get_exit_flag(){
+    return &exit_flag;
+}

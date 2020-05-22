@@ -16,4 +16,12 @@ void VM::run(const std::string& exe_path, mem_add start_add){
     auto bytes = str.c_str();
     auto sz = str.size();
     config->vmm->set(start_add, (byte*)bytes, (uint32_t)sz);
+
+    //set ip to start of exe
+    config->vmr->get_ip_reg().set_value(start_add);
+
+    bool* exit_flag = config->vmr->get_exit_flag();
+    while(*exit_flag != true){
+        
+    }
 }
