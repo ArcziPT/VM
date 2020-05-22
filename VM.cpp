@@ -18,10 +18,13 @@ void VM::run(const std::string& exe_path, mem_add start_add){
     config->vmm->set(start_add, (byte*)bytes, (uint32_t)sz);
 
     //set ip to start of exe
-    config->vmr->get_ip_reg().set_value(start_add);
+    auto& ip_reg = config->vmr->get_ip_reg();
+    ip_reg.set_value(start_add);
 
     bool* exit_flag = config->vmr->get_exit_flag();
     while(*exit_flag != true){
+        opcode opc = config->vmm->read(ip_reg.get_value(), config->opc_sz);
+
         
     }
 }
