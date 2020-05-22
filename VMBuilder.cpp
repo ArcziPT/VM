@@ -13,7 +13,7 @@ std::unique_ptr<VM> VMBuilder::build(const std::string& config_path){
 }
 
 void VMBuilder::read_config_file(){
-    std::ifstream t("file.txt");
+    std::ifstream t(config_path);
     std::stringstream buffer;
     buffer << t.rdbuf();
     config_file = buffer.str();
