@@ -4,14 +4,10 @@ VMRegisters::VMRegisters(const std::vector<Register>& registers){
     this->registers = registers;
     for(auto reg : this->registers){
         this->c_registers.insert({reg.get_code(), &reg});
-        this->n_registers.insert({reg.get_name(), &reg});
 
         if(reg.get_type() == Register::IP) ip_reg = this->c_registers[reg.get_code()];
         if(reg.get_type() == Register::FLAGS) flag_reg = this->c_registers[reg.get_code()];
     }
-
-    if(ip_reg == nullptr)
-        return; //TODO: hande error
 }
 
 Register& VMRegisters::operator[](reg_code r){
@@ -60,8 +56,4 @@ reg_sz VMRegisters::get_sz(reg_code r){
         return; //handle error
 
     return c_registers[r]->get_sz();
-}
-
-Register& VMRegisters::get_ip_reg(){
-    return *ip_reg;
 }

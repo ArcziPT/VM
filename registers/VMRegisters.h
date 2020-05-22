@@ -25,7 +25,7 @@ public:
 
     void copy(reg_code rs, reg_code rd);
 
-    Register& get_ip_reg();
+    void inc_ip(reg_val delta);
 
 private:
     std::vector<Register> registers;
