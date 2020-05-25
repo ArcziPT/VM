@@ -7,6 +7,8 @@
 
 #include "RPN_Converter.h"
 #include "registers/Register.h"
+#include "default_funcs.h"
+
 #include <functional>
 #include <variant>
 
@@ -30,13 +32,15 @@ struct func_def{
 class RPN_Calculator {
 public:
     reg_val calculate(const RPN& rpn);
-    void config(const std::map<std::string, func_def>& func_map, bool var_mode);
 
     bool error();
 
 private:
     bool err = false;
-    std::map<std::string, func_def> func_map;
+    std::map<std::string, func_def> func_map = {{"+", {2, &default_funcs::add}},
+                                                {"-", {2, &default_funcs::sub}},
+                                                {"*", {2, &default_funcs::mul}},
+                                                {"/", {2, &default_funcs::div}}};
 };
 
 

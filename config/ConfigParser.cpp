@@ -3,8 +3,10 @@
 
 std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     auto config = std::make_unique<VMConfig>();
+
+    //init rpn calculator
     config->rpn_calc = std::make_unique<RPN_Calculator>();
-    
+
     auto sections = split_into_sections(input);
 
     //TODO: parse mem config
