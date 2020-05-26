@@ -120,7 +120,7 @@ std::vector<Token> RPN_Converter::get_tokens(const std::string &input) {
             func_stream >> data;
 
             Token token;
-            token.val = data;
+            token.data = data;
 
             if((it+1) != input.end() && *(it+1) == '(') 
                 token.type = Token::Type::func;

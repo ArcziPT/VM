@@ -1,3 +1,6 @@
+#ifndef VM_REGISTERS_H
+#define VM_REGISTERS_H
+
 #include <vector>
 #include <map>
 #include <memory>
@@ -13,7 +16,7 @@ public:
     VMRegisters(const std::vector<Register>& registers);
 
     Register& operator[](reg_code r);
-    Register& VMRegisters::operator[](const std::string& r_name);
+    Register& operator[](const std::string& r_name);
 
     bool contains(reg_code r);
     bool contains(const std::string& r_name);
@@ -44,3 +47,5 @@ private:
 
     bool exit_flag = false;
 };
+
+#endif

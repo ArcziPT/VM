@@ -26,20 +26,30 @@ RPN_MicroOp::RPN_MicroOp(const RPN_MicroOp& rpn_op): vmm(rpn_op.vmm), vmr(rpn_op
 void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
     auto res = calculate(bytes);
 
+    auto set_mem = [this, &bytes, res](int sz) -> void{
+        mem_add add = 0;
+        for(int i=argsInfo[dest].pos; i<argsInfo[dest].pos + argsInfo[dest].sz; i++){
+            add << 8;
+            add += bytes[i];
+        }
+        vmm.set(add, res, sz);
+    };
+
     if(saveResult){
         if(argsInfo.count(dest) > 0){
             switch(argsInfo[dest].type)
             {
                 case Args::Type::M64:
+                    set_mem(8);
+                    break;
                 case Args::Type::M32:
+                    set_mem(4);
+                    break;
                 case Args::Type::M16:
+                    set_mem(2);
+                    break;
                 case Args::Type::M8:
-                    mem_add add = 0;
-                    for(int i=argsInfo[dest].pos; i<argsInfo[dest].pos + argsInfo[dest].sz; i++){
-                        add << 8;
-                        add += bytes[i];
-                    }
-                    vmm.set(add, res);
+                    set_mem(1);
                     break;
                 case Args::Type::R64:
                 case Args::Type::R32:

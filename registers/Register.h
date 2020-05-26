@@ -1,3 +1,6 @@
+#ifndef REGISTERS_H
+#define REGISTERS_H
+
 #include <stdint.h>
 #include <string>
 
@@ -74,3 +77,5 @@ using Register_8 = Register<uint8_t, 8>;
 using Register_16 = Register<uint16_t, 16>;
 using Register_32 = Register<uint32_t, 32>;
 using Register_64 = Register<uint64_t, 64>;*/
+
+#endif

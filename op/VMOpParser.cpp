@@ -53,11 +53,12 @@ OpConfig VMOpParser::parse(const std::string& line){
         std::cin>>r;
         
         if(r == "y")
-            return;
+            return {};
         else
             exit(-1);
         
     }
 
-    return OpConfig(opc, name, std::make_unique<VMOp>(rpn_calc, vmr, vmm, values));
+    auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, values);
+    return OpConfig(opc, name, vmop->get_args_sz(), std::move(vmop));
 }

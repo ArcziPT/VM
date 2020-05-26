@@ -11,14 +11,14 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //TODO: parse mem config
     if(sections.count("memory") == 0)
-        return;//error
+        return {};//error
 
     config->vmm = std::make_unique<VMMem>(stol(sections["memory"][0]));
 
 
     //parse registers config
     if(sections.count("register") == 0)
-        return; //TODO: handle error, registers not specified
+        return {}; //TODO: handle error, registers not specified
 
     for(auto& line : sections["register"]){
         auto reg_info = parse_reg_config(line);

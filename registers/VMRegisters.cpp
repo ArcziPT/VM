@@ -43,7 +43,7 @@ void VMRegisters::set_value(reg_code r, reg_val val){
 
 reg_val VMRegisters::read_value(reg_code r){
     if(c_registers.count(r) == 0)
-        return; //handle error
+        return 0; //handle error
 
     return c_registers[r]->get_value();
 }
@@ -57,7 +57,7 @@ void VMRegisters::copy(reg_code rs, reg_code rd){
 
 reg_sz VMRegisters::get_sz(reg_code r){
     if(c_registers.count(r) == 0)
-        return; //handle error
+        return -1; //handle error
 
     return c_registers[r]->get_sz();
 }

@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <string>
 #include <sstream>
 #include <algorithm>
@@ -13,3 +16,5 @@ void split(const std::string& str, Container& cont, char delim = ' ')
         cont.push_back(token);
     }
 }
+
+#endif

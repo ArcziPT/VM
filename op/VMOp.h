@@ -1,12 +1,13 @@
 #ifndef VM_OP_H
 #define VM_OP_H
 
-#include "config/VMConfig.h"
 #include "memory/VMMem.h"
 #include "utils.h"
 #include "ConditionalMicroOp.h"
 #include "RPN_MicroOp.h"
 #include "alu_rpn/RPN_Calculator.h"
+
+#include <memory>
 
 class VMOp{
 public:
@@ -14,11 +15,15 @@ public:
 
     void operator()(std::vector<uint8_t>& bytes);
 
+    int get_args_sz();
+
 private:
     VMRegisters& vmr;
     VMMem& vmm;
 
-    std::vector<MicroOp> microOps{};
+    int args_sz;
+
+    std::vector<std::unique_ptr<MicroOp>> microOps{};
 };
 
 #endif

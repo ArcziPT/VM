@@ -7,7 +7,7 @@
 #include <functional>
 
 #include "VMOp.h"
-#include "ConfigParser.h"
+#include "config/ConfigParser.h"
 #include "utils.h"
 #include "alu_rpn/RPN_Calculator.h"
 

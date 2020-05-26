@@ -39,6 +39,8 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
         i += arg_info.sz;
     }
 
+    args_sz = i;
+
 
     //TODO: parse instructions  
     split(values[3], instructions, ';');
@@ -51,16 +53,20 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
             split(t[1], temp, ':');
 
             RPN_MicroOp condition(rpn_calc, vmr, vmm, args_symtable, t[0]), ctrue(rpn_calc, vmr, vmm, args_symtable, temp[0]), cfalse(rpn_calc, vmr, vmm, args_symtable, temp[1]);
-            microOps.push_back(ConditionalMicroOp(condition, ctrue, cfalse));
+            microOps.push_back(std::make_unique<ConditionalMicroOp>(condition, ctrue, cfalse));
         }else{
             //parse inst
-            microOps.push_back(RPN_MicroOp(rpn_calc, vmr, vmm, args_symtable, inst));
+            microOps.push_back(std::make_unique<RPN_MicroOp>(rpn_calc, vmr, vmm, args_symtable, inst));
         }
     }
 }
 
 void VMOp::operator()(std::vector<uint8_t>& bytes){
     for(auto& microOp : microOps){
-        microOp(bytes);
+        (*microOp)(bytes);
     }
+}
+
+int VMOp::get_args_sz(){
+    return args_sz;
 }

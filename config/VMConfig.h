@@ -1,6 +1,10 @@
-#include "registers/Register.h"
-#include "op/VMOp.h"
+#ifndef VM_CONFIG_H
+#define VM_CONFIG_H
+
+#include "registers/VMRegisters.h"
 #include "alu_rpn/RPN_Calculator.h"
+#include "memory/VMMem.h"
+#include "op/VMOp.h"
 
 #include <memory>
 #include <map>
@@ -22,6 +26,8 @@ struct OpConfig{
 
     std::unique_ptr<VMOp> vm_op;
 
+    OpConfig() = default;
+
     OpConfig(opcode opc, std::string& name, int arg_sz_bytes, std::unique_ptr<VMOp> vm_op){
         this->opc = opc;
         this->mnemonic = name;
@@ -41,3 +47,5 @@ struct VMConfig{
 
     int opc_sz;
 };
+
+#endif

@@ -13,7 +13,7 @@ VMMem::VMMem(uint32_t mem_sz){
 
 reg_val VMMem::read(mem_add add, int nbytes){
     if(add > mem_sz)
-        return;
+        return 0; //error
 
     reg_val v = 0;
     for(int i=0; i<nbytes; i++){

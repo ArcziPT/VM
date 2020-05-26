@@ -1,7 +1,7 @@
 #ifndef DEFAULT_FUNCS_H
 #define DEFAULT_FUNCS_H
 
-#include "Register.h"
+#include "registers/Register.h"
 #include <vector>
 
 namespace default_funcs{
