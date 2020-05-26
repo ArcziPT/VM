@@ -13,7 +13,7 @@ struct RegisterConfig{
     std::string name;
     reg_sz sz;
     reg_code code;
-    Register::reg_type type;
+    Register::Type type;
 };
 
 

@@ -11,18 +11,18 @@ using reg_sz = uint16_t;
 
 class Register{ 
 public:
-    enum reg_type{
+    enum Type{
         GENERAL,
         IP,
         FLAGS
     };
 
     Register(const std::string& name, reg_code code,
-                            reg_sz sz, reg_type type) : name(name), code(code),
+                            reg_sz sz, Type type) : name(name), code(code),
                                                         sz(sz), type(type) {};
     
     void set_value(reg_val value);
-    reg_type get_type();
+    Register::Type get_type();
     reg_val get_value();
     reg_sz get_sz();
     std::string get_name();
@@ -34,7 +34,7 @@ private:
     reg_sz sz;
     reg_val value = 0;
 
-    reg_type type;
+    Type type;
 };
 
 /*template <typename reg, uint16_t sz>
