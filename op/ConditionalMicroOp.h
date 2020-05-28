@@ -9,7 +9,7 @@ public:
     ConditionalMicroOp(const RPN_MicroOp& condition, const RPN_MicroOp& ctrue, const RPN_MicroOp& cfalse) : 
                                         condition(condition), ctrue(ctrue), cfalse(cfalse) {};
 
-    void operator()(const std::vector<uint8_t>& bytes);;
+    void operator()(const std::vector<uint8_t>& bytes);
 
 private:
     RPN_MicroOp condition;

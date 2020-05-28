@@ -1,7 +1,11 @@
 #include "ConfigParser.h"
 #include "op/VMOpParser.h"
 
+#include "Debug.h"
+
 std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
+    LOG_CALL()
+
     auto config = std::make_unique<VMConfig>();
 
     //init rpn calculator
@@ -10,17 +14,22 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     auto sections = split_into_sections(input);
 
     //TODO: parse mem config
-    if(sections.count("memory") == 0)
+    if(sections.count("memory") == 0){
+        LOG_FUNC_MSG("no memory section in config")
         return {};//error
+    }
 
     config->vmm = std::make_unique<VMMem>(stol(sections["memory"][0]));
-
+    LOG_MSG("VMMem created - size: " + sections["memory"][0])
 
     //parse registers config
-    if(sections.count("register") == 0)
+    if(sections.count("register") == 0){
+        LOG_FUNC_MSG("no register config")
         return {}; //TODO: handle error, registers not specified
+    }
 
     for(auto& line : sections["register"]){
+        LOG_MSG("parse(" + line + ")")
         auto reg_info = parse_reg_config(line);
         config->registers_symtable[reg_info.name] = reg_info;
     }
@@ -31,13 +40,25 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     }
     config->vmr = std::make_unique<VMRegisters>(registers);
 
+    LOG_FUNC_MSG("registers config parsed")
+
 
     //parse op config
+    if(sections.count("opcode") == 0){
+        LOG_FUNC_MSG("opcode size not specified")
+        return {};
+    }
+
+    config->opc_sz = stoi(sections["opcode"][0]);
+
     VMOpParser parser(*(config->rpn_calc), *(config->vmr), *(config->vmm));
     for(auto& inst : sections["inst"]){
+        LOG_MSG("parse(" + inst + ")")
         auto op_info = parser.parse(inst);
         config->ops_symtable[op_info.opc] = std::move(op_info);
     }
+
+    LOG_FUNC_MSG("ops parsed")
 }
 
 std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_into_sections(const std::string& input){
@@ -62,7 +83,7 @@ std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_in
         int pos = line.find(' ');
         if(pos != std::string::npos){
             section_name = std::string(line.begin(), line.begin() + pos);
-            section = std::string(line.begin() + pos, line.end());
+            section = std::string(line.begin() + pos + 1, line.end());
             insert_section_if_valid(section_name, section);
         }
     }
@@ -81,6 +102,8 @@ RegisterConfig ConfigParser::parse_reg_config(const std::string& input){
     reg_config.name = temp[1];
     reg_config.type = Register::type_map[temp[2]];
     reg_config.sz = stoi(temp[3]);
+
+    LOG_TAG_MSG("register created", reg_config)
 
     return reg_config;
 }

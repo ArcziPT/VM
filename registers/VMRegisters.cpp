@@ -6,8 +6,8 @@ VMRegisters::VMRegisters(const std::vector<Register>& registers){
         this->c_registers.insert({reg.get_code(), &reg});
         this->n_registers.insert({reg.get_name(), &reg});
 
-        if(reg.get_type() == Register::IP) ip_reg = this->c_registers[reg.get_code()];
-        if(reg.get_type() == Register::FLAGS) flag_reg = this->c_registers[reg.get_code()];
+        if(reg.get_type() == Register::Type::IP) ip_reg = this->c_registers[reg.get_code()];
+        if(reg.get_type() == Register::Type::FLAG) flag_reg = this->c_registers[reg.get_code()];
     }
 
     if(ip_reg == nullptr)

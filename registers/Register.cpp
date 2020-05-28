@@ -1,5 +1,7 @@
 #include "Register.h"
 
+std::map<std::string, Register::Type> Register::type_map = {{"GEN", Register::Type::GENERAL}, {"IP", Register::Type::IP}, {"FLAG", Register::Type::FLAG}};
+
 void Register::set_value(reg_val value){
     this->value = value;
 }

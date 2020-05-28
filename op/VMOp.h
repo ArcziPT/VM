@@ -17,6 +17,10 @@ public:
 
     int get_args_sz();
 
+    #ifdef DEBUG_LOG
+    friend std::ostream& operator<<(std::ostream& os, const VMOp& vmop);
+    #endif
+
 private:
     VMRegisters& vmr;
     VMMem& vmm;

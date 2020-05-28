@@ -5,5 +5,4 @@ void ConditionalMicroOp::operator()(const std::vector<uint8_t>& bytes){
         ctrue(bytes);
     else
         cfalse(bytes);
-    
 }

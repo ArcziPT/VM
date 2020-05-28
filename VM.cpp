@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+#include "Debug.h"
+
 VM::VM(std::unique_ptr<VMConfig> config) : config(std::move(config)){
     
 }
@@ -17,6 +19,7 @@ void VM::run(const std::string& exe_path, mem_add start_add){
     auto sz = str.size();
 
     config->vmm->set(start_add, (byte*)bytes, (uint32_t)sz);
+    LOG_MSG("exe loaded")
 
     //set ip to start of exe
     auto& ip_reg = config->vmr->get_ip_reg();

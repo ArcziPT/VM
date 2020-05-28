@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <string>
+#include <map>
 
 //change if needed
 using reg_val = uint64_t;
@@ -39,7 +40,7 @@ private:
     Type type;
 };
 
-std::map<std::string, Register::Type> Register::type_map = {{"GEN", Register::Type::GENERAL}, {"IP", Register::Type::IP}, {"FLAG", Register::Type::FLAG}};
+//std::map<std::string, Register::Type> Register::type_map = {{"GEN", Register::Type::GENERAL}, {"IP", Register::Type::IP}, {"FLAG", Register::Type::FLAG}};
 
 /*template <typename reg, uint16_t sz>
 class Register{ 

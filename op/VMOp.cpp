@@ -16,6 +16,8 @@
 
 #include "VMOp.h"
 
+#include "Debug.h"
+
 VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<std::string>& values): vmr(vmr), vmm(vmm){
     std::vector<std::string> args;
     std::vector<std::string> instructions;
@@ -39,6 +41,8 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
         i += arg_info.sz;
     }
 
+    LOG_MSG("args_info created")
+
     args_sz = i;
 
 
@@ -54,15 +58,18 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
 
             RPN_MicroOp condition(rpn_calc, vmr, vmm, args_symtable, t[0]), ctrue(rpn_calc, vmr, vmm, args_symtable, temp[0]), cfalse(rpn_calc, vmr, vmm, args_symtable, temp[1]);
             microOps.push_back(std::make_unique<ConditionalMicroOp>(condition, ctrue, cfalse));
+            LOG_MSG("new conditional microop")
         }else{
             //parse inst
             microOps.push_back(std::make_unique<RPN_MicroOp>(rpn_calc, vmr, vmm, args_symtable, inst));
+            LOG_MSG("new microop")
         }
     }
 }
 
 void VMOp::operator()(std::vector<uint8_t>& bytes){
     for(auto& microOp : microOps){
+        LOG_MSG("microop called")
         (*microOp)(bytes);
     }
 }
@@ -70,3 +77,10 @@ void VMOp::operator()(std::vector<uint8_t>& bytes){
 int VMOp::get_args_sz(){
     return args_sz;
 }
+
+#ifdef DEBUG_LOG
+    std::ostream& operator<<(std::ostream& os, const VMOp& vmop){
+        os<<"number_of_microops="<<vmop.microOps.size();
+        return os;
+    };
+#endif

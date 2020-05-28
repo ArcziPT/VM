@@ -33,6 +33,10 @@ struct Token{
 //RPN
 struct RPN{
     std::vector<Token> stack;
+
+    #ifdef DEBUG_LOG
+    friend std::ostream& operator<<(std::ostream& os, const RPN& rpn);
+    #endif
 };
 
 using RPN_ptr = std::unique_ptr<RPN>;
@@ -51,6 +55,5 @@ private:
     bool has_greater_precedence(const std::string& op1, const std::string& op2);  //does op1 has greater precedence?
     bool has_equal_precedence(const std::string& op1, const std::string& op2);
 };
-
 
 #endif //CL_CALCULATOR_RPN_CONVERTER_H

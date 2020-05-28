@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Debug.h"
+
 //OPcode: 
 // - size 16/32/64 bit (depends on VM config)
 // - args size: TODO: let config specify it
@@ -36,7 +38,7 @@
 
 
 OpConfig VMOpParser::parse(const std::string& line){
-    std::vector<std::string> values;
+    std::vector<std::string> values{};
     split(line, values);
 
     opcode opc;
@@ -60,5 +62,8 @@ OpConfig VMOpParser::parse(const std::string& line){
     }
 
     auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, values);
-    return OpConfig(opc, name, vmop->get_args_sz(), std::move(vmop));
+    LOG_TAG_MSG("VMOp created", *vmop)
+
+    int args_sz = vmop->get_args_sz();
+    return OpConfig(opc, name, args_sz, std::move(vmop));
 }

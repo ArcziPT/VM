@@ -14,6 +14,10 @@ struct RegisterConfig{
     reg_sz sz;
     reg_code code;
     Register::Type type;
+
+    #ifdef DEBUG_LOG
+    friend std::ostream& operator<<(std::ostream& os, const RegisterConfig& reg_config);
+    #endif
 };
 
 
@@ -34,6 +38,22 @@ struct OpConfig{
         this->args_sz_bytes = arg_sz_bytes;
         this->vm_op = std::move(vm_op);
     }
+
+    OpConfig& operator=(OpConfig&& op_config){
+        opc = op_config.opc;
+        mnemonic = op_config.mnemonic;
+        args_sz_bytes = op_config.args_sz_bytes;
+        vm_op = std::move(op_config.vm_op);
+
+        return *this;
+    }
+
+    OpConfig(OpConfig&& op_config){
+        opc = op_config.opc;
+        mnemonic = op_config.mnemonic;
+        args_sz_bytes = op_config.args_sz_bytes;
+        vm_op = std::move(op_config.vm_op);
+    }
 };
 
 struct VMConfig{
@@ -45,6 +65,7 @@ struct VMConfig{
     std::unique_ptr<VMMem> vmm;
     //TODO: VMConfig
 
+    //opcode size in bytes
     int opc_sz;
 };
 

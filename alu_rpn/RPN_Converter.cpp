@@ -159,3 +159,13 @@ bool RPN_Converter::has_greater_precedence(const std::string &op1, const std::st
 bool RPN_Converter::has_equal_precedence(const std::string &op1, const std::string &op2) {
     return  precedence[op1] == precedence[op2];
 }
+
+#ifdef DEBUG_LOG
+    std::ostream& operator<<(std::ostream& os, const RPN& rpn){
+        for(auto& token : rpn.stack){
+            os<<token.val<<" ";
+        };
+
+        return os;
+    };
+#endif
