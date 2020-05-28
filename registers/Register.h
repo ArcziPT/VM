@@ -14,8 +14,10 @@ public:
     enum Type{
         GENERAL,
         IP,
-        FLAGS
+        FLAG
     };
+
+    static std::map<std::string, Type> type_map;
 
     Register(const std::string& name, reg_code code,
                             reg_sz sz, Type type) : name(name), code(code),
@@ -36,6 +38,8 @@ private:
 
     Type type;
 };
+
+std::map<std::string, Register::Type> Register::type_map = {{"GEN", Register::Type::GENERAL}, {"IP", Register::Type::IP}, {"FLAG", Register::Type::FLAG}};
 
 /*template <typename reg, uint16_t sz>
 class Register{ 

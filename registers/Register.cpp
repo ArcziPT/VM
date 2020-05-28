@@ -1,6 +1,5 @@
 #include "Register.h"
 
-
 void Register::set_value(reg_val value){
     this->value = value;
 }

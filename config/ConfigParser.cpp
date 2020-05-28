@@ -71,7 +71,16 @@ std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_in
 }
 
 RegisterConfig ConfigParser::parse_reg_config(const std::string& input){
-    //TODO: parse reg config
+    std::vector<std::string> temp{};
+    split(input, temp, ' ');
 
-    return {};
+    //register code name type size
+
+    RegisterConfig reg_config;
+    reg_config.code = stol(temp[0]);
+    reg_config.name = temp[1];
+    reg_config.type = Register::type_map[temp[2]];
+    reg_config.sz = stoi(temp[3]);
+
+    return reg_config;
 }
