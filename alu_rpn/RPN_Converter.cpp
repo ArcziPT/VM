@@ -8,6 +8,10 @@
 #include <stack>
 
 RPN_ptr RPN_Converter::convert(const std::string &input) {
+    if(input.empty()){
+        return std::make_unique<RPN>();
+    }
+    
     auto rpn = std::make_unique<RPN>();
 
     std::vector<Token> output_queue;

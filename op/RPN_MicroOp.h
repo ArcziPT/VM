@@ -26,6 +26,8 @@ private:
     std::map<std::string, Args::Info> argsInfo;
     std::unique_ptr<RPN> rpn;
 
+    bool empty = false;
+
     bool saveResult = false;
     std::string dest;
 };

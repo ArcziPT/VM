@@ -1,29 +1,42 @@
 #include "RPN_MicroOp.h"
 
 #include "utils.h"
+#include "Debug.h"
 
 RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst)
                                         : rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), argsInfo(argsInfo){
+
+    if(inst.empty()){
+        empty = true;
+        rpn = std::make_unique<RPN>();
+        return;
+    }
+
     RPN_Converter rpn_converter;
     std::vector<std::string> temp{};
 
     split(inst, temp, '=');
-    if(temp.size() > 1){
+    if(temp.size() == 2){
         saveResult = true;
         dest = temp[0];
+        rpn = rpn_converter.convert(temp[1]);
+    }else{
+        rpn = rpn_converter.convert(temp[0]);
     }
-
-    rpn = rpn_converter.convert(temp[1]);
 }
 
 RPN_MicroOp::RPN_MicroOp(const RPN_MicroOp& rpn_op): vmm(rpn_op.vmm), vmr(rpn_op.vmr), rpn_calc(rpn_op.rpn_calc){
     saveResult = rpn_op.saveResult;
     dest = rpn_op.dest;
     argsInfo = rpn_op.argsInfo;
+    empty = rpn_op.empty;
     rpn = std::make_unique<RPN>(*rpn_op.rpn);
 }
 
 void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
+    if(empty)
+        return;
+
     auto res = calculate(bytes);
 
     auto set_mem = [this, &bytes, res](int sz) -> void{
@@ -65,6 +78,9 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
 }
 
 reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
+    if(empty)
+        return 0;//rpn can be empty only when it is part of conditional microop, but then calculate() is not called
+    
     for(auto& token : rpn->stack){
         if(token.type == Token::Type::var){
             if(argsInfo.count(token.data) > 0){

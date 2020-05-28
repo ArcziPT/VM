@@ -27,7 +27,7 @@ private:
 
     int args_sz;
 
-    std::vector<std::unique_ptr<MicroOp>> microOps{};
+    std::vector<std::unique_ptr<MicroOp>> microOps;
 };
 
 #endif

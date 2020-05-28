@@ -45,18 +45,37 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
 
     args_sz = i;
 
-
     //TODO: parse instructions  
     split(values[3], instructions, ';');
     for(auto& inst : instructions){
         //conditonal instruction
         if(inst.find('?', 0) != std::string::npos){
-            std::vector<std::string> t{};
+            //  cndition, ctrue, cfalse must be in parentheses
+            //  (condition)?(ctrue):(cfalse)
+            std::vector<std::string> t;
             std::vector<std::string> temp;
             split(inst, t, '?');
             split(t[1], temp, ':');
 
-            RPN_MicroOp condition(rpn_calc, vmr, vmm, args_symtable, t[0]), ctrue(rpn_calc, vmr, vmm, args_symtable, temp[0]), cfalse(rpn_calc, vmr, vmm, args_symtable, temp[1]);
+            std::string s1="", s2="", s3="";
+
+            //if condition is empty -> error
+            if(t[0].size() <= 2)
+                return;
+
+            s1 = std::string(t[0].begin() + 1, t[0].end() - 1);
+
+            //ctrue epmty
+            if(temp[0].size() > 2)
+                s2 = std::string(temp[0].begin() + 1, temp[0].end() - 1);
+
+            //cfalse empty
+            if(temp[1].size() > 2)
+                s3 = std::string(temp[1].begin() + 1, temp[1].end() - 1);
+
+            RPN_MicroOp condition(rpn_calc, vmr, vmm, args_symtable, s1), 
+                        ctrue(rpn_calc, vmr, vmm, args_symtable, s2), 
+                        cfalse(rpn_calc, vmr, vmm, args_symtable, s3);
             microOps.push_back(std::make_unique<ConditionalMicroOp>(condition, ctrue, cfalse));
             LOG_MSG("new conditional microop")
         }else{
