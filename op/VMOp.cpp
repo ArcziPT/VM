@@ -15,6 +15,7 @@
             //else -> it has to be call to one of the predefined functions
 
 #include "VMOp.h"
+#include "Args.h"
 
 #include "Debug.h"
 

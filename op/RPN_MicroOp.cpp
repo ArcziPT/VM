@@ -48,6 +48,15 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
         vmm.set(add, res, sz);
     };
 
+    auto set_reg = [this, &bytes, res]() -> void{
+        reg_code code = 0;
+        for(int i=argsInfo[dest].pos; i<argsInfo[dest].pos + argsInfo[dest].sz; i++){
+            code << 8;
+            code += bytes[i];
+        }
+        vmr[code].set_value(res);
+    };
+
     if(saveResult){
         if(argsInfo.count(dest) > 0){
             switch(argsInfo[dest].type)
@@ -68,10 +77,12 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
                 case Args::Type::R32:
                 case Args::Type::R16:
                 case Args::Type::R8:
-                    vmr[dest].set_value(res);
+                    //dest is variable name, so it has to be translated to register code
+                    set_reg();
                     break;
             }
         }else{
+            //dest is register's name, so it can be used
             vmr[dest].set_value(res);
         }
     }

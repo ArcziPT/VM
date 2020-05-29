@@ -9,6 +9,7 @@
 #include "registers/VMRegisters.h"
 #include "memory/VMMem.h"
 #include "alu_rpn/RPN_Calculator.h"
+#include "Args.h"
 
 class RPN_MicroOp: public MicroOp{
 public:
