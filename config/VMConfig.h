@@ -67,6 +67,7 @@ struct VMConfig{
 
     //opcode size in bytes
     int opc_sz;
+    int reg_code_sz;
 };
 
 #endif

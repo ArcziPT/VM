@@ -1,5 +1,6 @@
 #include "ConfigParser.h"
 #include "op/VMOpParser.h"
+#include "op/Args.h"
 
 #include "Debug.h"
 
@@ -21,6 +22,19 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     config->vmm = std::make_unique<VMMem>(stol(sections["memory"][0]));
     LOG_MSG("VMMem created - size: " + sections["memory"][0])
+
+    if(sections.count("regcode") == 0){
+        LOG_FUNC_MSG("no regcode size specified");
+        return {};
+    }
+
+    config->reg_code_sz = stoi(sections["regcode"][0]);
+
+    //init Args::size_map
+    Args::size_map[Args::Type::R8] = config->reg_code_sz;
+    Args::size_map[Args::Type::R16] = config->reg_code_sz;
+    Args::size_map[Args::Type::R32] = config->reg_code_sz;
+    Args::size_map[Args::Type::R64] = config->reg_code_sz;
 
     //parse registers config
     if(sections.count("register") == 0){
@@ -59,6 +73,8 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     }
 
     LOG_FUNC_MSG("ops parsed")
+
+    return config;
 }
 
 std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_into_sections(const std::string& input){
