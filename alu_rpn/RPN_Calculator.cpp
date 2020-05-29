@@ -13,14 +13,10 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
     //https://en.wikipedia.org/wiki/Reverse_Polish_notation
     for(auto& token : rpn.stack){
         switch(token.type){
+            case Token::Type::var:
             case Token::Type::number:
                 stack.push(token.val);
                 break;
-
-            case Token::Type::var:
-                std::cout<<"VAR: "<<token.val<<std::endl;
-                err = true;
-                return 0;
 
             case Token::Type::func:
             case Token::Type::op:
