@@ -1,0 +1,16 @@
+memory 4096
+
+regcode 1
+
+register 1 rax GEN 64
+register 2 rbx GEN 64
+register 3 rfl FLAG 64
+register 4 rip IP 64
+register 5 rsd GEN 64
+register 6 rsp GEN 64
+
+opcode 1
+
+inst 1 add r64#r1,r64#r2 r1=r1+r2
+inst 2 jmpne r64#r1,r64#r2,m64#m (r1-r2)?(rip=m):()
+inst 3 set r64#r,i64#i r=i
