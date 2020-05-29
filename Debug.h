@@ -2,17 +2,30 @@
 #define DEBUG_H
 
 #include <iostream>
+#include <fstream>
 
 #ifndef DEBUG_LOG
-    #define LOG_FUNC_MSG(A)
     #define LOG_MSG(A)
-    #define LOG_TAG_MSG(A, B)
-    #define LOG_CALL()
+    #define LOG_OBJECT(A)
 #else
-    #define LOG_FUNC_MSG(A) std::cout<<__PRETTY_FUNCTION__<<": "<<A<<std::endl;
-    #define LOG_MSG(A) std::cout<<A<<std::endl;
-    #define LOG_TAG_MSG(A, B) std::cout<<A<<": "<<B<<std::endl;
-    #define LOG_CALL() std::cout<<__PRETTY_FUNCTION__<<" called"<<std::endl;
+    #define LOG_MSG(A) std::cout<<"[MSG]: "<<A<<std::endl;
+    #define LOG_OBJECT(A) std::cout<<"[OBJECT]: "<<#A<<" -> ("<<A<<")"<<std::endl;
+#endif
+
+#ifndef FILE_DEBUG_LOG
+    #define OPEN_LOG_FILE(A)
+    #define FILE_LOG_ERROR(A)
+    #define FILE_LOG_MSG(A)
+    #define FILE_LOG_OBJECT(A)
+    #define CLOSE_LOG_FILE()
+#else
+    std::ofstream debug_file;
+
+    #define OPEN_LOG_FILE(A) debug_file.open(A);
+    #define FILE_LOG_ERROR(A) debug_file<<"[ERROR]("<<__FILE__<<":"<<__LINE__<<"): "<<A<<std::endl;
+    #define FILE_LOG_MSG(A) debug_file<<"[MSG]: "<<A<<std::endl;
+    #define FILE_LOG_OBJECT(A) debug_file<<"[OBJECT]: "<<#A<<" = "<<A<<std::endl;
+    #define CLOSE_LOG_FILE() debug_file.close();
 #endif
 
 #endif
