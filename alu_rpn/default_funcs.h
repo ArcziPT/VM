@@ -9,6 +9,7 @@ namespace default_funcs{
     reg_val sub(const std::vector<reg_val>& r);
     reg_val mul(const std::vector<reg_val>& r);
     reg_val div(const std::vector<reg_val>& r);
+    reg_val xorr(const std::vector<reg_val>& r);
 }
 
 #endif

@@ -47,8 +47,20 @@ public:
     RPN_ptr convert(const std::string& input);
 
 private:
-    std::map<std::string, int> precedence;
-    std::map<std::string, bool> left_associativity;
+    std::map<std::string, int> precedence = {
+        {"^", 4},
+        {"*", 3},
+        {"/", 3},
+        {"+", 2},
+        {"-", 2}
+    };
+    std::map<std::string, bool> left_associativity = {
+        {"^", false},
+        {"*", true},
+        {"/", true},
+        {"+", true},
+        {"-", true}
+    };
     bool var_mode = false;
 
     std::vector<Token> get_tokens(const std::string& input);

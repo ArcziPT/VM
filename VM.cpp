@@ -1,7 +1,6 @@
-#include "VM.h"
-
 #include <fstream>
 
+#include "VM.h"
 #include "Debug.h"
 
 VM::VM(std::unique_ptr<VMConfig> config) : config(std::move(config)){
@@ -30,6 +29,8 @@ void VM::run(const std::string& exe_path, mem_add start_add){
         //read opcode of next instruction
         opcode opc = config->vmm->read(ip_reg.get_value(), config->opc_sz);
 
+        LOG_OBJECT(opc)
+
         //ilegal instruction
         if(config->ops_symtable.count(opc) == 0)
             return; //error
@@ -43,5 +44,9 @@ void VM::run(const std::string& exe_path, mem_add start_add){
 
         //execute op
         (*op.vm_op)(args);
+
+        LOG_OBJECT(config->vmr->operator[](1).get_value())
+        
+        LOG_MSG("op executed")
     }
 }

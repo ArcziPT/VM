@@ -95,15 +95,44 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
     for(auto& token : rpn->stack){
         if(token.type == Token::Type::var){
             if(argsInfo.count(token.data) > 0){
-                token.val = 0;
+                reg_val t = 0;
                 for(int i=0; i<argsInfo[token.data].sz; i++){
-                    token.val << 8;
-                    token.val += bytes[argsInfo[token.data].pos + i];
+                    t << 8;
+                    t += bytes[argsInfo[token.data].pos + i];
+                }
+
+                switch(argsInfo[token.data].type){
+                    case Args::Type::I64:
+                    case Args::Type::I32:
+                    case Args::Type::I16:
+                    case Args::Type::I8:
+                        token.val = t;
+                        break;
+                    case Args::Type::R64:
+                    case Args::Type::R32:
+                    case Args::Type::R16:
+                    case Args::Type::R8:
+                        token.val = vmr[t].get_value();
+                        break;
+                    case Args::Type::M64:
+                        token.val = vmm.read(t, 8);
+                        break;
+                    case Args::Type::M32:
+                        token.val = vmm.read(t, 4);
+                        break;
+                    case Args::Type::M16:
+                        token.val = vmm.read(t, 2);
+                        break;
+                    case Args::Type::M8:
+                        token.val = vmm.read(t, 1);
+                        break;
                 }
             }else if(vmr.contains(token.data)){
                 token.val = vmr[token.data].get_value();
             }
         }
+        LOG_OBJECT(token.data)
+        LOG_OBJECT(token.val)
     }
 
     //TODO: calculate the rpn

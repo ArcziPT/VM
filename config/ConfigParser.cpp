@@ -5,8 +5,6 @@
 #include "Debug.h"
 
 std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
-    LOG_CALL()
-
     auto config = std::make_unique<VMConfig>();
 
     //init rpn calculator
@@ -16,7 +14,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //TODO: parse mem config
     if(sections.count("memory") == 0){
-        LOG_FUNC_MSG("no memory section in config")
+        LOG_MSG("no memory section in config")
         return {};//error
     }
 
@@ -24,7 +22,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     LOG_MSG("VMMem created - size: " + sections["memory"][0])
 
     if(sections.count("regcode") == 0){
-        LOG_FUNC_MSG("no regcode size specified");
+        LOG_MSG("no regcode size specified");
         return {};
     }
 
@@ -38,7 +36,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //parse registers config
     if(sections.count("register") == 0){
-        LOG_FUNC_MSG("no register config")
+        LOG_MSG("no register config")
         return {}; //TODO: handle error, registers not specified
     }
 
@@ -54,12 +52,12 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     }
     config->vmr = std::make_unique<VMRegisters>(registers);
 
-    LOG_FUNC_MSG("registers config parsed")
+    LOG_MSG("registers config parsed")
 
 
     //parse op config
     if(sections.count("opcode") == 0){
-        LOG_FUNC_MSG("opcode size not specified")
+        LOG_MSG("opcode size not specified")
         return {};
     }
 
@@ -72,7 +70,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
         config->ops_symtable[op_info.opc] = std::move(op_info);
     }
 
-    LOG_FUNC_MSG("ops parsed")
+    LOG_MSG("ops parsed")
 
     return config;
 }
@@ -119,7 +117,7 @@ RegisterConfig ConfigParser::parse_reg_config(const std::string& input){
     reg_config.type = Register::type_map[temp[2]];
     reg_config.sz = stoi(temp[3]);
 
-    LOG_TAG_MSG("register created", reg_config)
+    LOG_OBJECT(reg_config)
 
     return reg_config;
 }

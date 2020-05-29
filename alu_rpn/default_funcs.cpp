@@ -15,3 +15,7 @@ reg_val default_funcs::mul(const std::vector<reg_val>& r){
 reg_val default_funcs::div(const std::vector<reg_val>& r){
     return r[0] / r[1];
 }
+
+reg_val default_funcs::xorr(const std::vector<reg_val>& r){
+    return r[0] ^ r[1];
+}

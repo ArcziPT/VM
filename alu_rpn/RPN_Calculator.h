@@ -40,7 +40,8 @@ private:
     std::map<std::string, func_def> func_map = {{"+", {2, &default_funcs::add}},
                                                 {"-", {2, &default_funcs::sub}},
                                                 {"*", {2, &default_funcs::mul}},
-                                                {"/", {2, &default_funcs::div}}};
+                                                {"/", {2, &default_funcs::div}},
+                                                {"^", {2, &default_funcs::xorr}}};
 };
 
 
