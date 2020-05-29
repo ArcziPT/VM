@@ -1,6 +1,8 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include <iostream>
+
 #ifndef DEBUG_LOG
     #define LOG_FUNC_MSG(A)
     #define LOG_MSG(A)

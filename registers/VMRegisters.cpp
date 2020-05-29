@@ -1,8 +1,10 @@
 #include "VMRegisters.h"
 
+#include "Debug.h"
+
 VMRegisters::VMRegisters(const std::vector<Register>& registers){
     this->registers = registers;
-    for(auto reg : this->registers){
+    for(auto& reg : this->registers){
         this->c_registers.insert({reg.get_code(), &reg});
         this->n_registers.insert({reg.get_name(), &reg});
 

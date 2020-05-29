@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstring>
 
+#include "Debug.h"
+
 //TODO: seting/reading memory depends on host's endianess
 
 VMMem::VMMem(uint32_t mem_sz){
@@ -49,5 +51,5 @@ void VMMem::set(mem_add add, byte* bytes, int nbytes){
     if(add > mem_sz || add + nbytes > mem_sz)
         return;
 
-    memcpy(mem + add, bytes, nbytes); 
+    memcpy(mem + add, bytes, nbytes);
 }  
