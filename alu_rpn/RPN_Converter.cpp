@@ -7,6 +7,8 @@
 #include <sstream>
 #include <stack>
 
+#include "Debug.h"
+
 RPN_ptr RPN_Converter::convert(const std::string &input) {
     if(input.empty()){
         return std::make_unique<RPN>();
@@ -115,7 +117,7 @@ std::vector<Token> RPN_Converter::get_tokens(const std::string &input) {
             it++;
             continue;
         }else if(*it != '(' and *it != ')' and precedence.count(std::string(1, *it)) == 0){ //not an operator
-            while(it != input.end() and *it != '(' and *it != ')' and precedence.count(std::string(1, *it)) == 0){
+            while(it != input.end() and *it != ',' and *it != '(' and *it != ')' and precedence.count(std::string(1, *it)) == 0){
                 func_stream << *it;
                 it++;
             }
@@ -126,7 +128,9 @@ std::vector<Token> RPN_Converter::get_tokens(const std::string &input) {
             Token token;
             token.data = data;
 
-            if((it+1) != input.end() && *(it+1) == '(') 
+            LOG_OBJECT(token.data)
+
+            if(it != input.end() && *it == '(') 
                 token.type = Token::Type::func;
             else
                 token.type = Token::Type::var;
