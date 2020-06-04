@@ -130,9 +130,9 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
             }else if(vmr.contains(token.data)){
                 token.val = vmr[token.data].get_value();
             }
+            LOG_OBJECT(token.data)
+            LOG_OBJECT(token.val)
         }
-        LOG_OBJECT(token.data)
-        LOG_OBJECT(token.val)
     }
 
     //TODO: calculate the rpn

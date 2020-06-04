@@ -5,6 +5,7 @@
 #include "alu_rpn/RPN_Calculator.h"
 #include "memory/VMMem.h"
 #include "op/VMOp.h"
+#include "screen/VMScreen.h"
 
 #include <memory>
 #include <map>
@@ -63,7 +64,8 @@ struct VMConfig{
     std::unique_ptr<RPN_Calculator> rpn_calc;
     std::unique_ptr<VMRegisters> vmr;
     std::unique_ptr<VMMem> vmm;
-    //TODO: VMConfig
+    
+    std::unique_ptr<VMScreen> vms;
 
     //opcode size in bytes
     int opc_sz;

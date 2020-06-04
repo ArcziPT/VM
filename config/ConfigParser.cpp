@@ -72,6 +72,33 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     LOG_MSG("ops parsed")
 
+
+    if(sections.count("screen") != 0){
+        std::vector<std::string> t{};
+        split(sections["screen"][0], t, ' ');
+
+        config->vms = std::make_unique<VMScreen>(stoi(t[0]), stoi(t[1]));
+
+        auto draw_line = [&vms = *(config->vms)](const std::vector<reg_val>& args) -> reg_val{
+            vms.draw_line(args[0], args[1], args[2], args[3]);
+            return 0;
+        };
+
+        auto clear = [&vms = *(config->vms)](const std::vector<reg_val>& args) -> reg_val{
+            vms.clear();
+            return 0;
+        };
+
+        auto set_color = [&vms = *(config->vms)](const std::vector<reg_val>& args) -> reg_val{
+            vms.set_color(args[0], args[1], args[2]);
+            return 0;
+        };
+
+        config->rpn_calc->add_function("draw_line", func_def(4, draw_line));
+        config->rpn_calc->add_function("clear", func_def(0, clear));
+        config->rpn_calc->add_function("set_color", func_def(3, set_color));
+    }
+
     return config;
 }
 
