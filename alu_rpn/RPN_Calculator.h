@@ -33,6 +33,8 @@ class RPN_Calculator {
 public:
     reg_val calculate(const RPN& rpn);
 
+    void add_function(const std::string& name, func_def func);
+
     bool error();
 
 private:

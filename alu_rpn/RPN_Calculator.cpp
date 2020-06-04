@@ -30,9 +30,10 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
                 auto def = func_map[token.data];
 
                 //get arguments from stack
-                std::vector<reg_val> args;
+                //order is reversed
+                std::vector<reg_val> args(def.arg_num, 0);
                 for(int i = 0; i < def.arg_num; i++){
-                    args.push_back(stack.top());
+                    args[def.arg_num-i-1] = stack.top();
                     stack.pop();
                 }
 
@@ -45,6 +46,10 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
     }
 
     return stack.top();
+}
+
+void RPN_Calculator::add_function(const std::string& name, func_def func){
+    func_map.insert({name, func});
 }
 
 bool RPN_Calculator::error() {
