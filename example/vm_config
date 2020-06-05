@@ -1,5 +1,6 @@
 memory 4096
-screen 1000 800
+screen 1920 1080
+font <font-path> 12
 
 regcode 1
 
@@ -17,3 +18,4 @@ inst 2 jmpne r64#r1,r64#r2,m64#m (r1-r2)?(rip=m):()
 inst 3 set r64#r,i64#i r=i
 inst 4 line i8#i1,i8#i2,i8#i3,i8#i4 draw_line(i1,i2,i3,i4)
 inst 5 set_color i8#r,i8#g,i8#b set_color(r,g,b)
+inst 6 text i8#x,i8#y,m16#t put_text(t,x,y)
