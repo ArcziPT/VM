@@ -15,6 +15,8 @@ public:
     void set(mem_add add, reg_val val, int nbytes);
     void set(mem_add add, byte* bytes, int nbytes);
 
+    byte* get_base_add();
+
 private:
     byte* mem = nullptr;
     uint32_t mem_sz = 0;

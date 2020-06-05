@@ -53,3 +53,7 @@ void VMMem::set(mem_add add, byte* bytes, int nbytes){
 
     memcpy(mem + add, bytes, nbytes);
 }  
+
+byte* VMMem::get_base_add(){
+    return mem;
+}
