@@ -101,34 +101,49 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
                     t += bytes[argsInfo[token.data].pos + i];
                 }
 
+                int sz = 8; //size in bytes of value pointed by token.val
                 switch(argsInfo[token.data].type){
                     case Args::Type::I64:
+                        sz *= 2;
                     case Args::Type::I32:
+                        sz *= 2;
                     case Args::Type::I16:
+                        sz *= 2;
                     case Args::Type::I8:
                         token.val = t;
                         break;
                     case Args::Type::R64:
+                        sz *= 2;
                     case Args::Type::R32:
+                        sz *= 2;
                     case Args::Type::R16:
+                        sz *= 2;
                     case Args::Type::R8:
                         token.val = vmr[t].get_value();
                         break;
                     case Args::Type::M64:
-                        token.val = vmm.read(t, 8);
-                        break;
+                        sz *= 2;
                     case Args::Type::M32:
-                        token.val = vmm.read(t, 4);
-                        break;
+                        sz *= 2;
                     case Args::Type::M16:
-                        token.val = vmm.read(t, 2);
-                        break;
+                        sz *= 2;
                     case Args::Type::M8:
-                        token.val = vmm.read(t, 1);
+                        token.val = t;
                         break;
+                    default:
+                        break;
+                }
+
+                if(token.ptr){
+                    //token is a pointer
+                    //read pointed data
+                    token.val = vmm.read(token.val, sz);
                 }
             }else if(vmr.contains(token.data)){
                 token.val = vmr[token.data].get_value();
+                if(token.ptr){
+                    token.val = vmm.read(token.val, vmr[token.data].get_sz());
+                }
             }
             LOG_OBJECT(token.data)
             LOG_OBJECT(token.val)

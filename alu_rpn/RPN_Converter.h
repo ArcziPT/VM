@@ -19,6 +19,8 @@
 struct Token{
     std::string data;
     reg_val val;
+    bool ptr = false; //token is ptr, when it is surrounded by []
+                      //and it has Type::var
     
     enum Type{
         number,

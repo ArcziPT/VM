@@ -132,8 +132,13 @@ std::vector<Token> RPN_Converter::get_tokens(const std::string &input) {
 
             if(it != input.end() && *it == '(') 
                 token.type = Token::Type::func;
-            else
+            else{
                 token.type = Token::Type::var;
+                if(token.data.find('[') != std::string::npos){
+                    token.data = std::string(token.data.begin()+1, token.data.end() - 1);
+                    token.ptr = true;
+                }
+            }
             
 
             tokens.push_back(token);
