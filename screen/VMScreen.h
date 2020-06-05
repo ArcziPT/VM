@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <thread>
 
 //TODO: implement Screen
@@ -14,11 +15,16 @@ public:
 
     void set_color(int r, int g, int b);
     void draw_line(int sx, int sy, int fx, int fy);
+    void put_text(char* text, int x, int y);
+    void set_font(const std::string& path, int sz);
     void clear();
 
 private:
     int width;
     int height;
+
+    int r=255,g=255,b=255;
+    TTF_Font* font = NULL;
 
     SDL_Window* window = NULL;
     SDL_Surface* screen_surface = NULL;

@@ -94,9 +94,22 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
             return 0;
         };
 
+        auto put_text = [&vms = *(config->vms), &vmm = *(config->vmm)](const std::vector<reg_val>& args) -> reg_val{
+            char* text = (char*)vmm.get_base_add() + args[0];
+            vms.put_text(text, args[1], args[2]);
+            return 0;
+        };
+
         config->rpn_calc->add_function("draw_line", func_def(4, draw_line));
         config->rpn_calc->add_function("clear", func_def(0, clear));
         config->rpn_calc->add_function("set_color", func_def(3, set_color));
+        config->rpn_calc->add_function("put_text", func_def(3, put_text));
+
+        if(sections.count("font") != 0){
+            std::vector<std::string> t{};
+            split(sections["font"][0], t, ' ');
+            config->vms->set_font(t[0], stoi(t[1]));
+        }
     }
 
     return config;
