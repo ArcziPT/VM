@@ -2,6 +2,7 @@
 
 #include "VM.h"
 #include "Debug.h"
+#include "error/VMError.h"
 
 VM::VM(std::unique_ptr<VMConfig> config) : config(std::move(config)){
     
@@ -32,8 +33,10 @@ void VM::run(const std::string& exe_path, mem_add start_add){
         LOG_OBJECT(opc)
 
         //ilegal instruction
-        if(config->ops_symtable.count(opc) == 0)
-            return; //error
+        if(config->ops_symtable.count(opc) == 0){
+            VMError::get_instance().set_error(VMError::Type::ILLEGAL_OP);
+            VMError::get_instance().print_msg_exit("VM");
+        }
 
         //retrive op info
         auto& op = config->ops_symtable[opc];
@@ -44,8 +47,6 @@ void VM::run(const std::string& exe_path, mem_add start_add){
 
         //execute op
         (*op.vm_op)(args);
-
-        LOG_OBJECT(config->vmr->operator[](1).get_value())
         
         LOG_MSG("op executed")
     }

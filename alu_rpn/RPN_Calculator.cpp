@@ -3,6 +3,8 @@
 //
 
 #include "RPN_Calculator.h"
+#include "error/VMError.h"
+
 #include <stack>
 #include <functional>
 
@@ -22,9 +24,8 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
             case Token::Type::op:
                 //check if function exists
                 if(func_map.count(token.data) == 0){
-                    std::cout<<"Function(operator) \""<<token.data<<"\" not defined\n";
-                    err = true;
-                    return 0;
+                    VMError::get_instance().set_error(VMError::Type::FUNC_NOT_DEFINED);
+                    VMError::get_instance().print_msg_exit("Calc");
                 }
 
                 auto def = func_map[token.data];
@@ -50,8 +51,4 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
 
 void RPN_Calculator::add_function(const std::string& name, func_def func){
     func_map.insert({name, func});
-}
-
-bool RPN_Calculator::error() {
-    return err;
 }

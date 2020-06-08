@@ -1,6 +1,7 @@
 #include "ConfigParser.h"
 #include "op/VMOpParser.h"
 #include "op/Args.h"
+#include "error/VMError.h"
 
 #include "Debug.h"
 
@@ -14,16 +15,16 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //TODO: parse mem config
     if(sections.count("memory") == 0){
-        LOG_MSG("no memory section in config")
-        return {};//error
+        VMError::get_instance().set_error(VMError::Type::NO_MEM_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
     }
 
     config->vmm = std::make_unique<VMMem>(stol(sections["memory"][0]));
     LOG_MSG("VMMem created - size: " + sections["memory"][0])
 
     if(sections.count("regcode") == 0){
-        LOG_MSG("no regcode size specified");
-        return {};
+        VMError::get_instance().set_error(VMError::Type::NO_REGC_SZ_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
     }
 
     config->reg_code_sz = stoi(sections["regcode"][0]);
@@ -36,8 +37,8 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //parse registers config
     if(sections.count("register") == 0){
-        LOG_MSG("no register config")
-        return {}; //TODO: handle error, registers not specified
+        VMError::get_instance().set_error(VMError::Type::NO_REG_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
     }
 
     for(auto& line : sections["register"]){
@@ -57,8 +58,8 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     //parse op config
     if(sections.count("opcode") == 0){
-        LOG_MSG("opcode size not specified")
-        return {};
+        VMError::get_instance().set_error(VMError::Type::NO_OP_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
     }
 
     config->opc_sz = stoi(sections["opcode"][0]);
@@ -151,11 +152,21 @@ RegisterConfig ConfigParser::parse_reg_config(const std::string& input){
 
     //register code name type size
 
+    if(temp.size() < 4){
+        VMError::get_instance().set_error(VMError::Type::WRONG_REG_CONFIG);
+        VMError::get_instance().print_msg_exit("Register config parser");
+    }
+
     RegisterConfig reg_config;
-    reg_config.code = stol(temp[0]);
-    reg_config.name = temp[1];
-    reg_config.type = Register::type_map[temp[2]];
-    reg_config.sz = stoi(temp[3]);
+    try{
+        reg_config.code = stol(temp[0]);
+        reg_config.name = temp[1];
+        reg_config.type = Register::type_map[temp[2]];
+        reg_config.sz = stoi(temp[3]);
+    }catch(const std::invalid_argument& ia){
+        VMError::get_instance().set_error(VMError::Type::WRONG_REG_CONFIG);
+        VMError::get_instance().print_msg_exit("Register config parser");
+    }
 
     LOG_OBJECT(reg_config)
 

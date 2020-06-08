@@ -35,10 +35,7 @@ public:
 
     void add_function(const std::string& name, func_def func);
 
-    bool error();
-
 private:
-    bool err = false;
     std::map<std::string, func_def> func_map = {{"+", {2, &default_funcs::add}},
                                                 {"-", {2, &default_funcs::sub}},
                                                 {"*", {2, &default_funcs::mul}},
