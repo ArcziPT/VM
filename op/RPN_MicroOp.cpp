@@ -2,9 +2,10 @@
 
 #include "utils.h"
 #include "Debug.h"
+#include "error/VMError.h"
 
-RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst)
-                                        : rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), argsInfo(argsInfo){
+RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst)
+                                        : rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), flags_config(flags_config), argsInfo(argsInfo){
 
     if(inst.empty()){
         empty = true;
@@ -25,7 +26,7 @@ RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm,
     }
 }
 
-RPN_MicroOp::RPN_MicroOp(const RPN_MicroOp& rpn_op): vmm(rpn_op.vmm), vmr(rpn_op.vmr), rpn_calc(rpn_op.rpn_calc){
+RPN_MicroOp::RPN_MicroOp(const RPN_MicroOp& rpn_op): vmm(rpn_op.vmm), vmr(rpn_op.vmr), rpn_calc(rpn_op.rpn_calc), flags_config(rpn_op.flags_config){
     saveResult = rpn_op.saveResult;
     dest = rpn_op.dest;
     argsInfo = rpn_op.argsInfo;
@@ -84,6 +85,13 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
         }else{
             //dest is register's name, so it can be used
             vmr[dest].set_value(res);
+
+            //OVERFLOW DETECTION
+            if(res >> vmr[dest].get_sz() > 0){
+                auto flag_config = flags_config["OVERFLOW"];
+                auto val = vmr[flag_config.register_name].get_value();
+                vmr[flag_config.register_name].set_value(val | (0x1 << flag_config.pos));
+            }
         }
     }
 }
@@ -91,9 +99,12 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
 reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
     if(empty)
         return 0;//rpn can be empty only when it is part of conditional microop, but then calculate() is not called
-    
+   
+    //find value of every token
     for(auto& token : rpn->stack){
+        //only variables need to be find
         if(token.type == Token::Type::var){
+            //variable is operation argument
             if(argsInfo.count(token.data) > 0){
                 reg_val t = 0;
                 for(int i=0; i<argsInfo[token.data].sz; i++){
@@ -139,11 +150,19 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
                     //read pointed data
                     token.val = vmm.read(token.val, sz);
                 }
+            //variable is register name
             }else if(vmr.contains(token.data)){
                 token.val = vmr[token.data].get_value();
                 if(token.ptr){
                     token.val = vmm.read(token.val, vmr[token.data].get_sz());
                 }
+            //variable is FLAG's name
+            }else if(flags_config.count(token.data) > 0){
+                token.val = flags_config[token.data].flag_id;
+            //error
+            }else{
+                VMError::get_instance().set_error(VMError::Type::INVALID_ARG);
+                VMError::get_instance().print_msg_exit("RPN_MicroOp");
             }
             LOG_OBJECT(token.data)
             LOG_OBJECT(token.val)

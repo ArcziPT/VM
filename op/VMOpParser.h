@@ -14,13 +14,14 @@
 
 class VMOpParser{
 public:
-    VMOpParser(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm): rpn_calc(rpn_calc), vmr(vmr), vmm(vmm) {};
+    VMOpParser(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config): rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), flags_config(flags_config) {};
     OpConfig parse(const std::string& line);
 
 private:
     VMRegisters& vmr;
     VMMem& vmm;
     RPN_Calculator& rpn_calc;
+    std::map<std::string, FlagConfig>& flags_config;
 };
 
 #endif

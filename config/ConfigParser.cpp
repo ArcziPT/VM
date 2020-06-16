@@ -56,6 +56,60 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     LOG_MSG("registers config parsed")
 
 
+    //parse FLAGS
+    if(sections.count("FLAG") == 0){
+        VMError::get_instance().set_error(VMError::Type::NO_FLAGS_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
+    }
+
+    //indexed by flag_id
+    for(auto& flag : sections["FLAG"]){
+        std::vector<std::string> t{};
+        split(flag, t, ' ');
+
+        if(t.size() < 3)
+            continue;
+
+        auto flag_config = FlagConfig(t[0], t[1], stoi(t[2]));
+        config->flags_config_map.insert({t[0], flag_config}); //indexed by name
+        config->flags_config.push_back(flag_config); //indexed by flag_id
+    }
+
+    if(config->flags_config.size() == 0){
+        VMError::get_instance().set_error(VMError::Type::NO_FLAGS_CONFIG);
+        VMError::get_instance().print_msg_exit("ConfigParser");
+    }
+
+    auto set_flag = [&vmr = *(config->vmr), &flags_config = config->flags_config](const std::vector<reg_val>& args) -> reg_val{
+        auto& flag_config = flags_config[args[0]];
+        auto& reg = vmr[flag_config.register_name];
+
+        auto val = reg.get_value();
+        val |= (0x1 << flag_config.pos);
+    };
+
+    auto unset_flag = [&vmr = *(config->vmr), &flags_config = config->flags_config](const std::vector<reg_val>& args) -> reg_val{
+        auto& flag_config = flags_config[args[0]];
+        auto& reg = vmr[flag_config.register_name];
+
+        auto val = reg.get_value();
+        val &= ~(0x1 << flag_config.pos);
+    };
+
+    auto isset_flag = [&vmr = *(config->vmr), &flags_config = config->flags_config](const std::vector<reg_val>& args) -> reg_val{
+        auto& flag_config = flags_config[args[0]];
+        auto& reg = vmr[flag_config.register_name];
+
+        auto val = reg.get_value();
+        //returns 1 if flag is set, 0 otherwise
+        return (val & 0x1 << flag_config.pos);
+    };
+
+    config->rpn_calc->add_function("set_flag", func_def(1, set_flag));
+    config->rpn_calc->add_function("unset_flag", func_def(1, unset_flag));
+    config->rpn_calc->add_function("isset_flag", func_def(1, isset_flag));
+
+
     //parse op config
     if(sections.count("opcode") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_OP_CONFIG);
@@ -64,7 +118,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     config->opc_sz = stoi(sections["opcode"][0]);
 
-    VMOpParser parser(*(config->rpn_calc), *(config->vmr), *(config->vmm));
+    VMOpParser parser(*(config->rpn_calc), *(config->vmr), *(config->vmm), config->flags_config_map);
     for(auto& inst : sections["inst"]){
         LOG_MSG("parse(" + inst + ")")
         auto op_info = parser.parse(inst);

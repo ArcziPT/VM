@@ -6,56 +6,12 @@
 #include "memory/VMMem.h"
 #include "op/VMOp.h"
 #include "screen/VMScreen.h"
+#include "registers/RegisterConfig.h"
+#include "registers/FlagConfig.h"
+#include "op/OpConfig.h"
 
 #include <memory>
 #include <map>
-
-struct RegisterConfig{
-    std::string name;
-    reg_sz sz;
-    reg_code code;
-    Register::Type type;
-
-    #ifdef DEBUG_LOG
-    friend std::ostream& operator<<(std::ostream& os, const RegisterConfig& reg_config);
-    #endif
-};
-
-
-using opcode = uint64_t;
-struct OpConfig{
-    opcode opc;
-    std::string mnemonic;
-
-    int args_sz_bytes;
-
-    std::unique_ptr<VMOp> vm_op;
-
-    OpConfig() = default;
-
-    OpConfig(opcode opc, std::string& name, int arg_sz_bytes, std::unique_ptr<VMOp> vm_op){
-        this->opc = opc;
-        this->mnemonic = name;
-        this->args_sz_bytes = arg_sz_bytes;
-        this->vm_op = std::move(vm_op);
-    }
-
-    OpConfig& operator=(OpConfig&& op_config){
-        opc = op_config.opc;
-        mnemonic = op_config.mnemonic;
-        args_sz_bytes = op_config.args_sz_bytes;
-        vm_op = std::move(op_config.vm_op);
-
-        return *this;
-    }
-
-    OpConfig(OpConfig&& op_config){
-        opc = op_config.opc;
-        mnemonic = op_config.mnemonic;
-        args_sz_bytes = op_config.args_sz_bytes;
-        vm_op = std::move(op_config.vm_op);
-    }
-};
 
 struct VMConfig{
     std::map<std::string, RegisterConfig> registers_symtable;
@@ -66,6 +22,10 @@ struct VMConfig{
     std::unique_ptr<VMMem> vmm;
     
     std::unique_ptr<VMScreen> vms;
+
+    //flags
+    std::map<std::string, FlagConfig> flags_config_map;
+    std::vector<FlagConfig> flags_config;
 
     //opcode size in bytes
     int opc_sz;

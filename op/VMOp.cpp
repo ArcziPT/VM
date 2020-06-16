@@ -19,7 +19,7 @@
 
 #include "Debug.h"
 
-VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<std::string>& values): vmr(vmr), vmm(vmm){
+VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values): vmr(vmr), vmm(vmm), flags_config(flags_config){
     std::vector<std::string> args;
     std::vector<std::string> instructions;
     split(values[2], args, ',');
@@ -74,14 +74,14 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<s
             if(temp[1].size() > 2)
                 s3 = std::string(temp[1].begin() + 1, temp[1].end() - 1);
 
-            RPN_MicroOp condition(rpn_calc, vmr, vmm, args_symtable, s1), 
-                        ctrue(rpn_calc, vmr, vmm, args_symtable, s2), 
-                        cfalse(rpn_calc, vmr, vmm, args_symtable, s3);
+            RPN_MicroOp condition(rpn_calc, vmr, vmm, flags_config, args_symtable, s1), 
+                        ctrue(rpn_calc, vmr, vmm, flags_config, args_symtable, s2), 
+                        cfalse(rpn_calc, vmr, vmm, flags_config, args_symtable, s3);
             microOps.push_back(std::make_unique<ConditionalMicroOp>(condition, ctrue, cfalse));
             LOG_MSG("new conditional microop")
         }else{
             //parse inst
-            microOps.push_back(std::make_unique<RPN_MicroOp>(rpn_calc, vmr, vmm, args_symtable, inst));
+            microOps.push_back(std::make_unique<RPN_MicroOp>(rpn_calc, vmr, vmm, flags_config, args_symtable, inst));
             LOG_MSG("new microop")
         }
     }

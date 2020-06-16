@@ -4,6 +4,7 @@
 
 #include "RPN_Calculator.h"
 #include "error/VMError.h"
+#include "Debug.h"
 
 #include <stack>
 #include <functional>

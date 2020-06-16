@@ -3,17 +3,18 @@
 
 #include <vector>
 #include <map>
+
 #include "MicroOp.h"
 #include "alu_rpn/RPN_Converter.h"
-
 #include "registers/VMRegisters.h"
 #include "memory/VMMem.h"
 #include "alu_rpn/RPN_Calculator.h"
 #include "Args.h"
+#include "registers/FlagConfig.h"
 
 class RPN_MicroOp: public MicroOp{
 public:
-    RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst);
+    RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst);
     RPN_MicroOp(const RPN_MicroOp& rpn_op);
 
     void operator()(const std::vector<uint8_t>& bytes);
@@ -23,6 +24,7 @@ private:
     VMRegisters& vmr;
     VMMem& vmm;
     RPN_Calculator& rpn_calc;
+    std::map<std::string, FlagConfig>& flags_config;
 
     std::map<std::string, Args::Info> argsInfo;
     std::unique_ptr<RPN> rpn;

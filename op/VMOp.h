@@ -11,7 +11,7 @@
 
 class VMOp{
 public:
-    VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::vector<std::string>& values);
+    VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values);
 
     void operator()(std::vector<uint8_t>& bytes);
 
@@ -24,6 +24,7 @@ public:
 private:
     VMRegisters& vmr;
     VMMem& vmm;
+    std::map<std::string, FlagConfig>& flags_config;
 
     int args_sz;
 

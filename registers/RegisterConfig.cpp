@@ -1,4 +1,4 @@
-#include "VMConfig.h"
+#include "RegisterConfig.h"
 
 #ifdef DEBUG_LOG
     std::ostream& operator<<(std::ostream& os, const RegisterConfig& reg_config){

@@ -21,15 +21,6 @@ public:
     bool contains(reg_code r);
     bool contains(const std::string& r_name);
 
-    void set_value(reg_code r, reg_val val);
-    reg_val read_value(reg_code r);
-
-    reg_sz get_sz(reg_code r);
-
-    void copy(reg_code rs, reg_code rd);
-
-    void inc_ip(reg_val delta);
-
     Register& get_ip_reg();
 
     //

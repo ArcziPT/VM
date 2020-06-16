@@ -8,8 +8,8 @@
     #define LOG_MSG(A)
     #define LOG_OBJECT(A)
 #else
-    #define LOG_MSG(A) std::cout<<"[MSG]: "<<A<<std::endl;
-    #define LOG_OBJECT(A) std::cout<<"[OBJECT]: "<<#A<<" -> ("<<A<<")"<<std::endl;
+    #define LOG_MSG(A) std::cout<<"[MSG]: "<<(A)<<std::endl;
+    #define LOG_OBJECT(A) std::cout<<"[OBJECT]: "<<#A<<" -> ("<<(A)<<")"<<std::endl;
 #endif
 
 #ifndef FILE_DEBUG_LOG

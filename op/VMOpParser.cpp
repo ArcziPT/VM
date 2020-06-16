@@ -61,7 +61,7 @@ OpConfig VMOpParser::parse(const std::string& line){
         
     }
 
-    auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, values);
+    auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, flags_config, values);
     LOG_OBJECT(*vmop)
 
     int args_sz = vmop->get_args_sz();
