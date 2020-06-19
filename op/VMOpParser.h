@@ -11,10 +11,14 @@
 #include "utils.h"
 #include "alu_rpn/RPN_Calculator.h"
 
-
+//!
+//! \class VMOpParser - parses operation's configuration and creates one.
+//!
 class VMOpParser{
 public:
     VMOpParser(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config): rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), flags_config(flags_config) {};
+    
+    //! @param line - line in configuration file, which contains operation's arguments declaration and instructions
     OpConfig parse(const std::string& line);
 
 private:

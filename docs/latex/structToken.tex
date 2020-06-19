@@ -1,0 +1,39 @@
+\hypertarget{structToken}{}\doxysection{Token Struct Reference}
+\label{structToken}\index{Token@{Token}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structToken_acf70e9411196c602738c3ed2428c7137}\label{structToken_acf70e9411196c602738c3ed2428c7137}} 
+enum {\bfseries Type} \{ \newline
+{\bfseries number}, 
+{\bfseries func}, 
+{\bfseries left\+\_\+p}, 
+{\bfseries right\+\_\+p}, 
+\newline
+{\bfseries op}, 
+{\bfseries var}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structToken_ad536a520dac03ae812f429b220e9808a}\label{structToken_ad536a520dac03ae812f429b220e9808a}} 
+std\+::string \mbox{\hyperlink{structToken_ad536a520dac03ae812f429b220e9808a}{data}}
+\begin{DoxyCompactList}\small\item\em token in string format \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structToken_ab5a8cc9a48fd0bbff46a6a0f6fb4858e}\label{structToken_ab5a8cc9a48fd0bbff46a6a0f6fb4858e}} 
+reg\+\_\+val \mbox{\hyperlink{structToken_ab5a8cc9a48fd0bbff46a6a0f6fb4858e}{val}}
+\begin{DoxyCompactList}\small\item\em token\textquotesingle{}s value (in case of Type\+::var it will be set later) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structToken_a3a588a17c9ff7297f4cf87e5ab20a1b5}\label{structToken_a3a588a17c9ff7297f4cf87e5ab20a1b5}} 
+bool \mbox{\hyperlink{structToken_a3a588a17c9ff7297f4cf87e5ab20a1b5}{ptr}} = false
+\begin{DoxyCompactList}\small\item\em token is ptr, when it is surrounded by \mbox{[}\mbox{]} and it has Type\+::var \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structToken_a9489a1a5d74833ee567b150597a6ffbd}\label{structToken_a9489a1a5d74833ee567b150597a6ffbd}} 
+enum Token\+::\+Type {\bfseries type}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\textquotesingle{}s information. Every \mbox{\hyperlink{structRPN}{R\+PN}} consist of sequence of tokens. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+alu\+\_\+rpn/R\+P\+N\+\_\+\+Converter.\+h\end{DoxyCompactItemize}

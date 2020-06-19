@@ -3,8 +3,12 @@
 
 #include <map>
 
+//!
+//! \class VMError singleton for error handling.
+//! 
 class VMError{
 public:
+    //! error types
     enum Type{
         NO_REG_CONFIG,
         NO_MEM_CONFIG,

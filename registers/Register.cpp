@@ -4,10 +4,11 @@
 std::map<std::string, Register::Type> Register::type_map = {{"GEN", Register::Type::GENERAL}, {"IP", Register::Type::IP}, {"FLAG", Register::Type::FLAG}};
 
 void Register::set_value(reg_val value){
+    //create mask
     reg_val mask = (0x1 << (sz - 1));
     mask += mask - 1;
 
-    //truncate value to (sz) bits
+    //truncate value to (sz)-bits
     this->value = (value & mask);
 }
 

@@ -1,0 +1,64 @@
+\hypertarget{classConditionalMicroOp}{}\doxysection{Conditional\+Micro\+Op Class Reference}
+\label{classConditionalMicroOp}\index{ConditionalMicroOp@{ConditionalMicroOp}}
+Inheritance diagram for Conditional\+Micro\+Op\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classConditionalMicroOp}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConditionalMicroOp_a485b426d5c27490193fc03a2bceda941}{Conditional\+Micro\+Op}} (const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&condition, const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&ctrue, const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&cfalse)
+\item 
+void \mbox{\hyperlink{classConditionalMicroOp_a70bd33475e2b67c6db98c377f260952b}{operator()}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&bytes)
+\begin{DoxyCompactList}\small\item\em calls condition micro operation and based on its result calls ctrue or cfalse \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} to create conditional one 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConditionalMicroOp_a485b426d5c27490193fc03a2bceda941}\label{classConditionalMicroOp_a485b426d5c27490193fc03a2bceda941}} 
+\index{ConditionalMicroOp@{ConditionalMicroOp}!ConditionalMicroOp@{ConditionalMicroOp}}
+\index{ConditionalMicroOp@{ConditionalMicroOp}!ConditionalMicroOp@{ConditionalMicroOp}}
+\doxysubsubsection{\texorpdfstring{ConditionalMicroOp()}{ConditionalMicroOp()}}
+{\footnotesize\ttfamily Conditional\+Micro\+Op\+::\+Conditional\+Micro\+Op (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&}]{condition,  }\item[{const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&}]{ctrue,  }\item[{const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&}]{cfalse }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates new micro operation 
+\begin{DoxyParams}{Parameters}
+{\em condition} & -\/ rpn micro operation, which will be evaluated \\
+\hline
+{\em ctrue} & -\/ rpn micro operaion, which will be executed when condition is true \\
+\hline
+{\em cfalse} & -\/ rpn micro operation, which will be executed when condition is false \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConditionalMicroOp_a70bd33475e2b67c6db98c377f260952b}\label{classConditionalMicroOp_a70bd33475e2b67c6db98c377f260952b}} 
+\index{ConditionalMicroOp@{ConditionalMicroOp}!operator()@{operator()}}
+\index{operator()@{operator()}!ConditionalMicroOp@{ConditionalMicroOp}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void Conditional\+Micro\+Op\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+calls condition micro operation and based on its result calls ctrue or cfalse 
+
+execute micro operation 
+\begin{DoxyParams}{Parameters}
+{\em bytes} & array of bytes containing args for R\+P\+N\+\_\+\+Micro\+Ops \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classMicroOp_a11c0ce5f42ec06b3cea8217504ff1234}{Micro\+Op}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+op/Conditional\+Micro\+Op.\+h\item 
+op/Conditional\+Micro\+Op.\+cpp\end{DoxyCompactItemize}

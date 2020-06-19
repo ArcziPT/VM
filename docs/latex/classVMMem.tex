@@ -1,0 +1,61 @@
+\hypertarget{classVMMem}{}\doxysection{V\+M\+Mem Class Reference}
+\label{classVMMem}\index{VMMem@{VMMem}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMMem_ace96c82db48dbaf480ff476ce2404b93}\label{classVMMem_ace96c82db48dbaf480ff476ce2404b93}} 
+\mbox{\hyperlink{classVMMem_ace96c82db48dbaf480ff476ce2404b93}{V\+M\+Mem}} (uint32\+\_\+t mem\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em creates new vm\textquotesingle{}s memory with specified size in bytes \end{DoxyCompactList}\item 
+reg\+\_\+val \mbox{\hyperlink{classVMMem_abd560572b4e6a77c42a22bbab4827bb4}{read}} (mem\+\_\+add add, int nbytes)
+\item 
+\mbox{\Hypertarget{classVMMem_a3d320d547bcf8206acdf19a72f17b8b5}\label{classVMMem_a3d320d547bcf8206acdf19a72f17b8b5}} 
+std\+::vector$<$ byte $>$ {\bfseries read\+\_\+bytes} (mem\+\_\+add add, int n\+\_\+bytes)
+\item 
+void \mbox{\hyperlink{classVMMem_abe4b5ea1dece6409c3cf21e516dbb1b2}{set}} (mem\+\_\+add add, reg\+\_\+val val, int nbytes)
+\item 
+\mbox{\Hypertarget{classVMMem_a126294b8e29b67f964e5b26761ec80e1}\label{classVMMem_a126294b8e29b67f964e5b26761ec80e1}} 
+void {\bfseries set} (mem\+\_\+add add, byte $\ast$bytes, int nbytes)
+\item 
+\mbox{\Hypertarget{classVMMem_a619328962706f91987a9a61207df80fa}\label{classVMMem_a619328962706f91987a9a61207df80fa}} 
+byte $\ast$ \mbox{\hyperlink{classVMMem_a619328962706f91987a9a61207df80fa}{get\+\_\+base\+\_\+add}} ()
+\begin{DoxyCompactList}\small\item\em returns address of vm\textquotesingle{}s memory in host\textquotesingle{}s address space \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+for memory manipulation. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVMMem_abd560572b4e6a77c42a22bbab4827bb4}\label{classVMMem_abd560572b4e6a77c42a22bbab4827bb4}} 
+\index{VMMem@{VMMem}!read@{read}}
+\index{read@{read}!VMMem@{VMMem}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily reg\+\_\+val V\+M\+Mem\+::read (\begin{DoxyParamCaption}\item[{mem\+\_\+add}]{add,  }\item[{int}]{nbytes }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em add} & -\/ address in memory \\
+\hline
+{\em nbytes} & -\/ number of bytes to read \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVMMem_abe4b5ea1dece6409c3cf21e516dbb1b2}\label{classVMMem_abe4b5ea1dece6409c3cf21e516dbb1b2}} 
+\index{VMMem@{VMMem}!set@{set}}
+\index{set@{set}!VMMem@{VMMem}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void V\+M\+Mem\+::set (\begin{DoxyParamCaption}\item[{mem\+\_\+add}]{add,  }\item[{reg\+\_\+val}]{val,  }\item[{int}]{nbytes }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em add} & -\/ address in memory \\
+\hline
+{\em val} & -\/ value to save \\
+\hline
+{\em nbytes} & -\/ number of bytes to save \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+memory/V\+M\+Mem.\+h\item 
+memory/V\+M\+Mem.\+cpp\end{DoxyCompactItemize}

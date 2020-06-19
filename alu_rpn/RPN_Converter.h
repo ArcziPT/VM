@@ -12,15 +12,14 @@
 #include <map>
 
 #include "registers/Register.h"
-/*
- * converts infix notation to RPN
- */
 
+//!
+//! \struct Token - token's information. Every RPN consist of sequence of tokens.
+//!
 struct Token{
-    std::string data;
-    reg_val val;
-    bool ptr = false; //token is ptr, when it is surrounded by []
-                      //and it has Type::var
+    std::string data; //!< token in string format
+    reg_val val; //!< token's value (in case of Type::var it will be set later)
+    bool ptr = false; //!< token is ptr, when it is surrounded by [] and it has Type::var
     
     enum Type{
         number,
@@ -32,7 +31,9 @@ struct Token{
     } type;
 };
 
-//RPN
+//!
+//! \struct RPN 
+//!
 struct RPN{
     std::vector<Token> stack;
 
@@ -41,9 +42,11 @@ struct RPN{
     #endif
 };
 
-using RPN_ptr = std::unique_ptr<RPN>;
+using RPN_ptr = std::unique_ptr<RPN>; //!< \typedef RPN_ptr
 
-//RPN converter
+//!
+//! \class converts infix notation to rpn
+//!
 class RPN_Converter {
 public:
     RPN_ptr convert(const std::string& input);

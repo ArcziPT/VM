@@ -1,0 +1,39 @@
+\hypertarget{classVMOpParser}{}\doxysection{V\+M\+Op\+Parser Class Reference}
+\label{classVMOpParser}\index{VMOpParser@{VMOpParser}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMOpParser_af5abe56b900447fd508ed9d91ce8911c}\label{classVMOpParser_af5abe56b900447fd508ed9d91ce8911c}} 
+{\bfseries V\+M\+Op\+Parser} (\mbox{\hyperlink{classRPN__Calculator}{R\+P\+N\+\_\+\+Calculator}} \&rpn\+\_\+calc, \mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} \&vmr, \mbox{\hyperlink{classVMMem}{V\+M\+Mem}} \&vmm, std\+::map$<$ std\+::string, \mbox{\hyperlink{structFlagConfig}{Flag\+Config}} $>$ \&flags\+\_\+config)
+\item 
+\mbox{\hyperlink{structOpConfig}{Op\+Config}} \mbox{\hyperlink{classVMOpParser_a7ea20449a76571928b073a3a6052bac1}{parse}} (const std\+::string \&line)
+\begin{DoxyCompactList}\small\item\em Extracts operation\textquotesingle{}s name, opcode and creates \mbox{\hyperlink{classVMOp}{V\+M\+Op}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+operation\textquotesingle{}s configuration and creates one. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVMOpParser_a7ea20449a76571928b073a3a6052bac1}\label{classVMOpParser_a7ea20449a76571928b073a3a6052bac1}} 
+\index{VMOpParser@{VMOpParser}!parse@{parse}}
+\index{parse@{parse}!VMOpParser@{VMOpParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structOpConfig}{Op\+Config}} V\+M\+Op\+Parser\+::parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{line }\end{DoxyParamCaption})}
+
+
+
+Extracts operation\textquotesingle{}s name, opcode and creates \mbox{\hyperlink{classVMOp}{V\+M\+Op}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & -\/ line in configuration file, which contains operation\textquotesingle{}s arguments declaration and instructions \\
+\hline
+\end{DoxyParams}
+create operation
+
+return operation config
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+op/V\+M\+Op\+Parser.\+h\item 
+op/V\+M\+Op\+Parser.\+cpp\end{DoxyCompactItemize}

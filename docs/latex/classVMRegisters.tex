@@ -1,0 +1,74 @@
+\hypertarget{classVMRegisters}{}\doxysection{V\+M\+Registers Class Reference}
+\label{classVMRegisters}\index{VMRegisters@{VMRegisters}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVMRegisters_a4415878d462047d9abb041e232740a8c}{V\+M\+Registers}} (const std\+::vector$<$ \mbox{\hyperlink{classRegister}{Register}} $>$ \&registers)
+\item 
+\mbox{\hyperlink{classRegister}{Register}} \& \mbox{\hyperlink{classVMRegisters_a6341c757e605d950810a7835fecf820b}{operator\mbox{[}$\,$\mbox{]}}} (reg\+\_\+code r)
+\item 
+\mbox{\hyperlink{classRegister}{Register}} \& \mbox{\hyperlink{classVMRegisters_a2c7aa50b33b80908dbf8363c654f613b}{operator\mbox{[}$\,$\mbox{]}}} (const std\+::string \&r\+\_\+name)
+\item 
+\mbox{\Hypertarget{classVMRegisters_a10fef6aa2574cbabb6c2cdb68ca9fc20}\label{classVMRegisters_a10fef6aa2574cbabb6c2cdb68ca9fc20}} 
+bool \mbox{\hyperlink{classVMRegisters_a10fef6aa2574cbabb6c2cdb68ca9fc20}{contains}} (reg\+\_\+code r)
+\begin{DoxyCompactList}\small\item\em checks if such a register exsist \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVMRegisters_afbd92c8e605cebf813109cbe3ff11ebd}\label{classVMRegisters_afbd92c8e605cebf813109cbe3ff11ebd}} 
+bool {\bfseries contains} (const std\+::string \&r\+\_\+name)
+\item 
+\mbox{\Hypertarget{classVMRegisters_adf9fe799b762218c4922cd5184b80453}\label{classVMRegisters_adf9fe799b762218c4922cd5184b80453}} 
+\mbox{\hyperlink{classRegister}{Register}} \& \mbox{\hyperlink{classVMRegisters_adf9fe799b762218c4922cd5184b80453}{get\+\_\+ip\+\_\+reg}} ()
+\begin{DoxyCompactList}\small\item\em returns ip register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVMRegisters_a7344f5024670115eae4a518377157cb3}\label{classVMRegisters_a7344f5024670115eae4a518377157cb3}} 
+void {\bfseries set\+\_\+exit\+\_\+flag} ()
+\item 
+\mbox{\Hypertarget{classVMRegisters_a5b37d62b8c0941687c79065f1d76f16e}\label{classVMRegisters_a5b37d62b8c0941687c79065f1d76f16e}} 
+bool $\ast$ {\bfseries get\+\_\+exit\+\_\+flag} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\textquotesingle{}s registers. Allows to get access to registers by theirs name or code. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVMRegisters_a4415878d462047d9abb041e232740a8c}\label{classVMRegisters_a4415878d462047d9abb041e232740a8c}} 
+\index{VMRegisters@{VMRegisters}!VMRegisters@{VMRegisters}}
+\index{VMRegisters@{VMRegisters}!VMRegisters@{VMRegisters}}
+\doxysubsubsection{\texorpdfstring{VMRegisters()}{VMRegisters()}}
+{\footnotesize\ttfamily V\+M\+Registers\+::\+V\+M\+Registers (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classRegister}{Register}} $>$ \&}]{registers }\end{DoxyParamCaption})}
+
+creates \mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} with access to given registers 
+\begin{DoxyParams}{Parameters}
+{\em registers} & array of registers, which will be managed by this class \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVMRegisters_a2c7aa50b33b80908dbf8363c654f613b}\label{classVMRegisters_a2c7aa50b33b80908dbf8363c654f613b}} 
+\index{VMRegisters@{VMRegisters}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!VMRegisters@{VMRegisters}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRegister}{Register}} \& V\+M\+Registers\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{r\+\_\+name }\end{DoxyParamCaption})}
+
+returns register with specified name 
+\begin{DoxyParams}{Parameters}
+{\em r\+\_\+name} & name of register \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVMRegisters_a6341c757e605d950810a7835fecf820b}\label{classVMRegisters_a6341c757e605d950810a7835fecf820b}} 
+\index{VMRegisters@{VMRegisters}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!VMRegisters@{VMRegisters}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRegister}{Register}} \& V\+M\+Registers\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{reg\+\_\+code}]{r }\end{DoxyParamCaption})}
+
+returns register with specified code 
+\begin{DoxyParams}{Parameters}
+{\em r} & register\textquotesingle{}s code \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+registers/V\+M\+Registers.\+h\item 
+registers/V\+M\+Registers.\+cpp\end{DoxyCompactItemize}

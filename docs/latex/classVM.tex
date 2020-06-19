@@ -1,0 +1,47 @@
+\hypertarget{classVM}{}\doxysection{VM Class Reference}
+\label{classVM}\index{VM@{VM}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVM_a5b3f3db3ee9b00ee35e018c93c25bd61}{VM}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structVMConfig}{V\+M\+Config}} $>$ config)
+\item 
+void \mbox{\hyperlink{classVM_a00782316d7c879b64f958f199de4c2ba}{run}} (const std\+::string \&exe\+\_\+path, mem\+\_\+add start\+\_\+add)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVM_a5b3f3db3ee9b00ee35e018c93c25bd61}\label{classVM_a5b3f3db3ee9b00ee35e018c93c25bd61}} 
+\index{VM@{VM}!VM@{VM}}
+\index{VM@{VM}!VM@{VM}}
+\doxysubsubsection{\texorpdfstring{VM()}{VM()}}
+{\footnotesize\ttfamily V\+M\+::\+VM (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structVMConfig}{V\+M\+Config}} $>$}]{config }\end{DoxyParamCaption})}
+
+creates \mbox{\hyperlink{classVM}{VM}} based on config 
+\begin{DoxyParams}{Parameters}
+{\em config} & valid \mbox{\hyperlink{structVMConfig}{V\+M\+Config}} created by \mbox{\hyperlink{classConfigParser}{Config\+Parser}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVM_a00782316d7c879b64f958f199de4c2ba}\label{classVM_a00782316d7c879b64f958f199de4c2ba}} 
+\index{VM@{VM}!run@{run}}
+\index{run@{run}!VM@{VM}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void V\+M\+::run (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{exe\+\_\+path,  }\item[{mem\+\_\+add}]{start\+\_\+add }\end{DoxyParamCaption})}
+
+starts vm 
+\begin{DoxyParams}{Parameters}
+{\em exe\+\_\+path} & executable file\textquotesingle{}s path \\
+\hline
+{\em start\+\_\+add} & address at which file should be loaded\\
+\hline
+\end{DoxyParams}
+Main function of \mbox{\hyperlink{classVM}{VM}}\+: -\/loads exe file -\/set ip register at he begining -\/start main loop\+: -\/read opcode -\/run operaion check if opcode exists ilegal instruction
+
+retrive operation info
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+V\+M.\+h\item 
+V\+M.\+cpp\end{DoxyCompactItemize}

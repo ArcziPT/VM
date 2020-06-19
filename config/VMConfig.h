@@ -13,23 +13,26 @@
 #include <memory>
 #include <map>
 
+//!
+//! \struct VMConfig contains information about vm's operations, registers,
+//! screen, flags, ...
+//!
 struct VMConfig{
-    std::map<std::string, RegisterConfig> registers_symtable;
-    std::map<opcode, OpConfig> ops_symtable;
+    std::map<std::string, RegisterConfig> registers_symtable; //!< registers' config
+    std::map<opcode, OpConfig> ops_symtable; //!< operations' config
 
-    std::unique_ptr<RPN_Calculator> rpn_calc;
-    std::unique_ptr<VMRegisters> vmr;
-    std::unique_ptr<VMMem> vmm;
+    std::unique_ptr<RPN_Calculator> rpn_calc; //!< rpn_calc
+    std::unique_ptr<VMRegisters> vmr; //!< VMRegisters
+    std::unique_ptr<VMMem> vmm; //!< VMMem
     
-    std::unique_ptr<VMScreen> vms;
+    std::unique_ptr<VMScreen> vms; //!< VMScreen
 
     //flags
-    std::map<std::string, FlagConfig> flags_config_map;
-    std::vector<FlagConfig> flags_config;
+    std::map<std::string, FlagConfig> flags_config_map; //!< flags' config map
+    std::vector<FlagConfig> flags_config; //!< flags' config
 
-    //opcode size in bytes
-    int opc_sz;
-    int reg_code_sz;
+    int opc_sz; //!< opcode size in bytes
+    int reg_code_sz; //!< register code size in bytes
 };
 
 #endif

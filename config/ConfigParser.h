@@ -7,8 +7,13 @@
 
 #include "VMConfig.h"
 
+//!
+//! \class ConfigParser creates VMConfig from configuration file.
+//!
 class ConfigParser{
 public:
+    //! create configuration
+    //! @param input - configuration file's content
     std::unique_ptr<VMConfig> parse(const std::string& input);
 
 private:

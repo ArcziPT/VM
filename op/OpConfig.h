@@ -3,17 +3,23 @@
 
 #include "op/VMOp.h"
 
-using opcode = uint64_t;
+using opcode = uint64_t; //!< \typedef opcode 
+
+//!
+//! \struct OpConfig information about operation and its arguments. 
+//!
 struct OpConfig{
-    opcode opc;
-    std::string mnemonic;
+    opcode opc; //!< opcode
+    std::string mnemonic; //!< mnemonic
 
-    int args_sz_bytes;
+    int args_sz_bytes; //!< size of arguments in bytes
 
-    std::unique_ptr<VMOp> vm_op;
+    std::unique_ptr<VMOp> vm_op; //!< operation
 
     OpConfig() = default;
 
+    //! creates new operation config
+    //! @param vm_op - VMOp (the operation itself), withgiven opcode
     OpConfig(opcode opc, std::string& name, int arg_sz_bytes, std::unique_ptr<VMOp> vm_op){
         this->opc = opc;
         this->mnemonic = name;

@@ -1,0 +1,106 @@
+\hypertarget{classVMError}{}\doxysection{V\+M\+Error Class Reference}
+\label{classVMError}\index{VMError@{VMError}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMError_a8790dfb85a7b62774549bba47c490373}\label{classVMError_a8790dfb85a7b62774549bba47c490373}} 
+enum \mbox{\hyperlink{classVMError_a8790dfb85a7b62774549bba47c490373}{Type}} \{ \newline
+{\bfseries N\+O\+\_\+\+R\+E\+G\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries N\+O\+\_\+\+M\+E\+M\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries N\+O\+\_\+\+O\+P\+C\+\_\+\+S\+Z\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries N\+O\+\_\+\+R\+E\+G\+C\+\_\+\+S\+Z\+\_\+\+C\+O\+N\+F\+IG}, 
+\newline
+{\bfseries N\+O\+\_\+\+O\+P\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries N\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries N\+O\+\_\+\+I\+P\+\_\+\+R\+E\+G\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries W\+R\+O\+N\+G\+\_\+\+R\+E\+G\+\_\+\+C\+O\+N\+F\+IG}, 
+\newline
+{\bfseries W\+R\+O\+N\+G\+\_\+\+O\+P\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries W\+R\+O\+N\+G\+\_\+\+M\+E\+M\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries I\+L\+L\+E\+G\+A\+L\+\_\+\+OP}, 
+{\bfseries W\+R\+O\+N\+G\+\_\+\+A\+D\+DR}, 
+\newline
+{\bfseries R\+E\+G\+C\+\_\+\+N\+O\+T\+\_\+\+E\+X\+I\+ST}, 
+{\bfseries F\+U\+N\+C\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}, 
+{\bfseries U\+N\+E\+X\+P\+E\+C\+T\+E\+D\+\_\+\+E\+OF}, 
+{\bfseries I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG}
+ \}
+\begin{DoxyCompactList}\small\item\em error types \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMError_ae2338f196ab04e684271db959836895a}\label{classVMError_ae2338f196ab04e684271db959836895a}} 
+void {\bfseries set\+\_\+error} (\mbox{\hyperlink{classVMError_a8790dfb85a7b62774549bba47c490373}{Type}} error)
+\item 
+\mbox{\Hypertarget{classVMError_acdf80a0a1c751a316f72d7bcb6e7fbac}\label{classVMError_acdf80a0a1c751a316f72d7bcb6e7fbac}} 
+bool {\bfseries is\+\_\+error\+\_\+set} ()
+\item 
+\mbox{\Hypertarget{classVMError_ac8ebad5482a8ee7023e5946e777b71b7}\label{classVMError_ac8ebad5482a8ee7023e5946e777b71b7}} 
+\mbox{\hyperlink{classVMError_a8790dfb85a7b62774549bba47c490373}{Type}} {\bfseries get\+\_\+error} ()
+\item 
+\mbox{\Hypertarget{classVMError_a9e2995fa7e17e1613a9cf027868856b0}\label{classVMError_a9e2995fa7e17e1613a9cf027868856b0}} 
+void {\bfseries print\+\_\+msg\+\_\+exit} (const std\+::string \&who)
+\item 
+\mbox{\Hypertarget{classVMError_a9d00c3f7afa6df50f204dba0541d2273}\label{classVMError_a9d00c3f7afa6df50f204dba0541d2273}} 
+void {\bfseries print\+\_\+msg} (const std\+::string \&who)
+\item 
+\mbox{\Hypertarget{classVMError_a19d5065d8a155c81a709194342a7a098}\label{classVMError_a19d5065d8a155c81a709194342a7a098}} 
+void {\bfseries rem\+\_\+error} ()
+\item 
+\mbox{\Hypertarget{classVMError_a4be9469a3867562f591b503808cd0fd3}\label{classVMError_a4be9469a3867562f591b503808cd0fd3}} 
+{\bfseries V\+M\+Error} (const \mbox{\hyperlink{classVMError}{V\+M\+Error}} \&)=delete
+\item 
+\mbox{\Hypertarget{classVMError_a25eb84696afe195de754a5a0b4e1b74d}\label{classVMError_a25eb84696afe195de754a5a0b4e1b74d}} 
+\mbox{\hyperlink{classVMError}{V\+M\+Error}} {\bfseries operator=} (const \mbox{\hyperlink{classVMError}{V\+M\+Error}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMError_a756503c20238036b03e3c26f1da35f1c}\label{classVMError_a756503c20238036b03e3c26f1da35f1c}} 
+static \mbox{\hyperlink{classVMError}{V\+M\+Error}} \& {\bfseries get\+\_\+instance} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{classVMError_a8790dfb85a7b62774549bba47c490373}{Type}}, std\+::string $>$ {\bfseries error\+\_\+msg\+\_\+map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+error handling. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classVMError_a4e1fe28074423beae672a609128a6278}\label{classVMError_a4e1fe28074423beae672a609128a6278}} 
+\index{VMError@{VMError}!error\_msg\_map@{error\_msg\_map}}
+\index{error\_msg\_map@{error\_msg\_map}!VMError@{VMError}}
+\doxysubsubsection{\texorpdfstring{error\_msg\_map}{error\_msg\_map}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{classVMError_a8790dfb85a7b62774549bba47c490373}{Type}}, std\+::string$>$ V\+M\+Error\+::error\+\_\+msg\+\_\+map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        \{Type::NO\_REG\_CONFIG, \textcolor{stringliteral}{"{}no register config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_MEM\_CONFIG, \textcolor{stringliteral}{"{}no memory config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_OPC\_SZ\_CONFIG, \textcolor{stringliteral}{"{}no opcode size config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_REGC\_SZ\_CONFIG, \textcolor{stringliteral}{"{}no registers' code size config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_OP\_CONFIG, \textcolor{stringliteral}{"{}no operations config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_FLAGS\_CONFIG, \textcolor{stringliteral}{"{}no flags config"{}}\},}
+\DoxyCodeLine{        \{Type::NO\_IP\_REG\_CONFIG, \textcolor{stringliteral}{"{}no ip register configuration"{}}\},}
+\DoxyCodeLine{        \{Type::WRONG\_REG\_CONFIG, \textcolor{stringliteral}{"{}wrong register config"{}}\},}
+\DoxyCodeLine{        \{Type::WRONG\_OP\_CONFIG, \textcolor{stringliteral}{"{}wrong operation config"{}}\},}
+\DoxyCodeLine{        \{Type::WRONG\_MEM\_CONFIG, \textcolor{stringliteral}{"{}wrong memory config"{}}\},}
+\DoxyCodeLine{        \{Type::ILLEGAL\_OP, \textcolor{stringliteral}{"{}illegal operation (wrong opcode)"{}}\},}
+\DoxyCodeLine{        \{Type::WRONG\_ADDR, \textcolor{stringliteral}{"{}wrong address"{}}\},}
+\DoxyCodeLine{        \{Type::REGC\_NOT\_EXIST, \textcolor{stringliteral}{"{}wrong register code"{}}\},}
+\DoxyCodeLine{        \{Type::FUNC\_NOT\_DEFINED, \textcolor{stringliteral}{"{}function was not defined"{}}\},}
+\DoxyCodeLine{        \{Type::UNEXPECTED\_EOF, \textcolor{stringliteral}{"{}unexpected eof"{}}\},}
+\DoxyCodeLine{        \{Type::INVALID\_ARG, \textcolor{stringliteral}{"{}invalid argument for operation"{}}\}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+error/V\+M\+Error.\+h\item 
+error/V\+M\+Error.\+cpp\end{DoxyCompactItemize}

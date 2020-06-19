@@ -1,0 +1,79 @@
+\hypertarget{classVMOp}{}\doxysection{V\+M\+Op Class Reference}
+\label{classVMOp}\index{VMOp@{VMOp}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVMOp_a123cfba6e3cd616c6e0524d1df88d6d4}{V\+M\+Op}} (\mbox{\hyperlink{classRPN__Calculator}{R\+P\+N\+\_\+\+Calculator}} \&rpn\+\_\+calc, \mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} \&vmr, \mbox{\hyperlink{classVMMem}{V\+M\+Mem}} \&vmm, std\+::map$<$ std\+::string, \mbox{\hyperlink{structFlagConfig}{Flag\+Config}} $>$ \&flags\+\_\+config, std\+::vector$<$ std\+::string $>$ \&values)
+\item 
+void \mbox{\hyperlink{classVMOp_a8ac33544cb6dbc0654403fd53612b80c}{operator()}} (std\+::vector$<$ uint8\+\_\+t $>$ \&bytes)
+\begin{DoxyCompactList}\small\item\em execute sequence of micro operations \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVMOp_ac85c683a2b0d8e1ce242963fe76b5e30}\label{classVMOp_ac85c683a2b0d8e1ce242963fe76b5e30}} 
+int \mbox{\hyperlink{classVMOp_ac85c683a2b0d8e1ce242963fe76b5e30}{get\+\_\+args\+\_\+sz}} ()
+\begin{DoxyCompactList}\small\item\em get arguments\textquotesingle{} size in bytes \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+of micro operations 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVMOp_a123cfba6e3cd616c6e0524d1df88d6d4}\label{classVMOp_a123cfba6e3cd616c6e0524d1df88d6d4}} 
+\index{VMOp@{VMOp}!VMOp@{VMOp}}
+\index{VMOp@{VMOp}!VMOp@{VMOp}}
+\doxysubsubsection{\texorpdfstring{VMOp()}{VMOp()}}
+{\footnotesize\ttfamily V\+M\+Op\+::\+V\+M\+Op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRPN__Calculator}{R\+P\+N\+\_\+\+Calculator}} \&}]{rpn\+\_\+calc,  }\item[{\mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} \&}]{vmr,  }\item[{\mbox{\hyperlink{classVMMem}{V\+M\+Mem}} \&}]{vmm,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{structFlagConfig}{Flag\+Config}} $>$ \&}]{flags\+\_\+config,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{values }\end{DoxyParamCaption})}
+
+create operation 
+\begin{DoxyParams}{Parameters}
+{\em rpn\+\_\+calc} & reference to vm\textquotesingle{}s rpn\+\_\+calculator \\
+\hline
+{\em vmr} & reference to vm\textquotesingle{}s registers \\
+\hline
+{\em vmm} & reference to vm\textquotesingle{}s memory \\
+\hline
+{\em flags\+\_\+config} & reference to configuration of flags \\
+\hline
+{\em values} & array of strings conatining arguments\textquotesingle{} declarations and sequence of microops\textquotesingle{} instructions \\
+\hline
+\end{DoxyParams}
+arguments\textquotesingle{} declarations are separated by \textquotesingle{},\textquotesingle{}
+
+get type
+
+get size
+
+set starting position
+
+next argument\textquotesingle{}s data will start after last byte of tis one
+
+total size of arguments
+
+instructions are separeted by \textquotesingle{};\textquotesingle{}
+
+cndition, ctrue, cfalse must be in parentheses format\+: (condition)?(ctrue)\+:(cfalse)
+
+create rpn\+\_\+microp to initialize conditional one
+
+rpn micro operation
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVMOp_a8ac33544cb6dbc0654403fd53612b80c}\label{classVMOp_a8ac33544cb6dbc0654403fd53612b80c}} 
+\index{VMOp@{VMOp}!operator()@{operator()}}
+\index{operator()@{operator()}!VMOp@{VMOp}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void V\+M\+Op\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{bytes }\end{DoxyParamCaption})}
+
+
+
+execute sequence of micro operations 
+
+execute 
+\begin{DoxyParams}{Parameters}
+{\em bytes} & -\/ operands \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+op/V\+M\+Op.\+h\item 
+op/V\+M\+Op.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,73 @@
+\hypertarget{classVMScreen}{}\doxysection{V\+M\+Screen Class Reference}
+\label{classVMScreen}\index{VMScreen@{VMScreen}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVMScreen_a52413deae84dfb97a29b02d60d970e3f}\label{classVMScreen_a52413deae84dfb97a29b02d60d970e3f}} 
+\mbox{\hyperlink{classVMScreen_a52413deae84dfb97a29b02d60d970e3f}{V\+M\+Screen}} (int width=800, int height=600)
+\begin{DoxyCompactList}\small\item\em creates \mbox{\hyperlink{classVMScreen}{V\+M\+Screen}} with specified resolution \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVMScreen_aaf0a4ba60cd6f0bb78b0eb7bf64ac8af}\label{classVMScreen_aaf0a4ba60cd6f0bb78b0eb7bf64ac8af}} 
+void {\bfseries set\+\_\+color} (int r, int g, int b)
+\item 
+void \mbox{\hyperlink{classVMScreen_ac673a01b4c2ceebac38010b589959b7b}{draw\+\_\+line}} (int sx, int sy, int fx, int fy)
+\item 
+void \mbox{\hyperlink{classVMScreen_ad477ad860e421e6162a9f6d9363e3571}{put\+\_\+text}} (char $\ast$text, int x, int y)
+\item 
+void \mbox{\hyperlink{classVMScreen_af389d9686cb9ea0bb600da4d19c45d31}{set\+\_\+font}} (const std\+::string \&path, int sz)
+\item 
+\mbox{\Hypertarget{classVMScreen_a8d4a299571d6d566f17b0807376a4460}\label{classVMScreen_a8d4a299571d6d566f17b0807376a4460}} 
+void {\bfseries clear} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+with S\+D\+L2 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVMScreen_ac673a01b4c2ceebac38010b589959b7b}\label{classVMScreen_ac673a01b4c2ceebac38010b589959b7b}} 
+\index{VMScreen@{VMScreen}!draw\_line@{draw\_line}}
+\index{draw\_line@{draw\_line}!VMScreen@{VMScreen}}
+\doxysubsubsection{\texorpdfstring{draw\_line()}{draw\_line()}}
+{\footnotesize\ttfamily void V\+M\+Screen\+::draw\+\_\+line (\begin{DoxyParamCaption}\item[{int}]{sx,  }\item[{int}]{sy,  }\item[{int}]{fx,  }\item[{int}]{fy }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sx} & x coordinate of starting point \\
+\hline
+{\em sy} & y coordinate of starting point \\
+\hline
+{\em fx} & x coordinate of ending point \\
+\hline
+{\em fy} & y coordinate of ending point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVMScreen_ad477ad860e421e6162a9f6d9363e3571}\label{classVMScreen_ad477ad860e421e6162a9f6d9363e3571}} 
+\index{VMScreen@{VMScreen}!put\_text@{put\_text}}
+\index{put\_text@{put\_text}!VMScreen@{VMScreen}}
+\doxysubsubsection{\texorpdfstring{put\_text()}{put\_text()}}
+{\footnotesize\ttfamily void V\+M\+Screen\+::put\+\_\+text (\begin{DoxyParamCaption}\item[{char $\ast$}]{text,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & pointer at \textquotesingle{}\textbackslash{}0\textquotesingle{}-\/ending string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVMScreen_af389d9686cb9ea0bb600da4d19c45d31}\label{classVMScreen_af389d9686cb9ea0bb600da4d19c45d31}} 
+\index{VMScreen@{VMScreen}!set\_font@{set\_font}}
+\index{set\_font@{set\_font}!VMScreen@{VMScreen}}
+\doxysubsubsection{\texorpdfstring{set\_font()}{set\_font()}}
+{\footnotesize\ttfamily void V\+M\+Screen\+::set\+\_\+font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path,  }\item[{int}]{sz }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & path to font file \\
+\hline
+{\em sz} & size of font \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+screen/V\+M\+Screen.\+h\item 
+screen/V\+M\+Screen.\+cpp\end{DoxyCompactItemize}

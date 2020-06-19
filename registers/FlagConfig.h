@@ -3,12 +3,16 @@
 
 #include <iostream>
 
+/**
+ * \struct FlagConfig contains basic information about 
+ * flags created by user in configuration file.
+*/
 struct FlagConfig{
-    std::string flag_name;
+    std::string flag_name; //!< flag's name
 
-    std::string register_name; //register containing this flag
-    int pos; //which bit
-    int flag_id; //internal id
+    std::string register_name; //!< register containing this flag
+    int pos; //!< which bit
+    int flag_id; //!< internal id
 
     FlagConfig(std::string flag_name, std::string register_name, int pos) : flag_name(flag_name), register_name(register_name), pos(pos) {
         flag_id = next_id;

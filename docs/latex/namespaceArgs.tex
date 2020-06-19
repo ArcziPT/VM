@@ -1,0 +1,108 @@
+\hypertarget{namespaceArgs}{}\doxysection{Args Namespace Reference}
+\label{namespaceArgs}\index{Args@{Args}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structArgs_1_1Info}{Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Type}} \{ \newline
+{\bfseries R8}, 
+{\bfseries R16}, 
+{\bfseries R32}, 
+{\bfseries R64}, 
+\newline
+{\bfseries M8}, 
+{\bfseries M16}, 
+{\bfseries M32}, 
+{\bfseries M64}, 
+\newline
+{\bfseries I8}, 
+{\bfseries I16}, 
+{\bfseries I32}, 
+{\bfseries I64}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Type}}, int $>$ \mbox{\hyperlink{namespaceArgs_a279899ce85c2af11804d4a0f5680b896}{size\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em When arg has a register type, only register code is passed, but it\textquotesingle{}s size is specified by config, so it has to be initialized. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Type}} $>$ \mbox{\hyperlink{namespaceArgs_a05628dad2a8a7b599fa91773afcc6c8d}{type\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em maps string literal to arg\textquotesingle{}s type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+consists of structures for managing operadns 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}\label{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}} 
+\index{Args@{Args}!Type@{Type}}
+\index{Type@{Type}!Args@{Args}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Args\+::\+Type}}}
+
+
+\begin{DoxyItemize}
+\item types of operations\textquotesingle{} arguments 
+\end{DoxyItemize}
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceArgs_a279899ce85c2af11804d4a0f5680b896}\label{namespaceArgs_a279899ce85c2af11804d4a0f5680b896}} 
+\index{Args@{Args}!size\_map@{size\_map}}
+\index{size\_map@{size\_map}!Args@{Args}}
+\doxysubsubsection{\texorpdfstring{size\_map}{size\_map}}
+{\footnotesize\ttfamily std\+::map$<$ \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Args\+::\+Type}}, int $>$ Args\+::size\+\_\+map\hspace{0.3cm}{\ttfamily [extern]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        \{Args::Type::R8, -\/1\},}
+\DoxyCodeLine{        \{Args::Type::R16, -\/1\},}
+\DoxyCodeLine{        \{Args::Type::R32, -\/1\},}
+\DoxyCodeLine{        \{Args::Type::R64, -\/1\},}
+\DoxyCodeLine{        \{Args::Type::M8, 1\},}
+\DoxyCodeLine{        \{Args::Type::M16, 2\},}
+\DoxyCodeLine{        \{Args::Type::M32, 4\},}
+\DoxyCodeLine{        \{Args::Type::M64, 8\},}
+\DoxyCodeLine{        \{Args::Type::I8, 1\},}
+\DoxyCodeLine{        \{Args::Type::I16, 2\},}
+\DoxyCodeLine{        \{Args::Type::I32, 4\},}
+\DoxyCodeLine{        \{Args::Type::I64, 8\}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+When arg has a register type, only register code is passed, but it\textquotesingle{}s size is specified by config, so it has to be initialized. 
+
+maps arg\textquotesingle{}s type to its size \mbox{\Hypertarget{namespaceArgs_a05628dad2a8a7b599fa91773afcc6c8d}\label{namespaceArgs_a05628dad2a8a7b599fa91773afcc6c8d}} 
+\index{Args@{Args}!type\_map@{type\_map}}
+\index{type\_map@{type\_map}!Args@{Args}}
+\doxysubsubsection{\texorpdfstring{type\_map}{type\_map}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, \mbox{\hyperlink{namespaceArgs_a12a9a75c04200c51b1c06f61ab5f0c67}{Args\+::\+Type}} $>$ Args\+::type\+\_\+map\hspace{0.3cm}{\ttfamily [extern]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}r8"{}}, Args::Type::R8\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}r16"{}}, Args::Type::R16\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}r32"{}}, Args::Type::R32\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}r64"{}}, Args::Type::R64\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}m8"{}}, Args::Type::M8\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}m16"{}}, Args::Type::M16\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}m32"{}}, Args::Type::M32\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}m64"{}}, Args::Type::M64\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}i8"{}}, Args::Type::I8\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}i16"{}}, Args::Type::I16\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}i32"{}}, Args::Type::I32\},}
+\DoxyCodeLine{        \{\textcolor{stringliteral}{"{}i64"{}}, Args::Type::I64\}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+maps string literal to arg\textquotesingle{}s type 
+

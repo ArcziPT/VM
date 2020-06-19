@@ -3,9 +3,9 @@
 #include "Debug.h"
 
 VMScreen::VMScreen(int width, int height) : width(width), height(height){
+    //init screen
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return; //error
-
 
     window = SDL_CreateWindow("VM", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN );
     if(window == NULL)

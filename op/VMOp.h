@@ -9,12 +9,24 @@
 
 #include <memory>
 
+//!
+//! \class VMOp wrapps sequence of micro operations 
+//!
 class VMOp{
 public:
+    //! create operation
+    //! @param rpn_calc reference to vm's rpn_calculator
+    //! @param vmr reference to vm's registers
+    //! @param vmm reference to vm's memory
+    //! @param flags_config reference to configuration of flags
+    //! @param values array of strings conatining arguments' declarations and sequence of microops' instructions
     VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values);
 
+    //! execute
+    //! @param bytes - operands
     void operator()(std::vector<uint8_t>& bytes);
 
+    //! get arguments' size in bytes
     int get_args_sz();
 
     #ifdef DEBUG_LOG
@@ -26,9 +38,9 @@ private:
     VMMem& vmm;
     std::map<std::string, FlagConfig>& flags_config;
 
-    int args_sz;
+    int args_sz; //!< arguments' size
 
-    std::vector<std::unique_ptr<MicroOp>> microOps;
+    std::vector<std::unique_ptr<MicroOp>> microOps; //!< array of micro operations
 };
 
 #endif

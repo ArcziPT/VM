@@ -36,7 +36,7 @@
  *  f(a)?ti:fi
  */
 
-
+//! Extracts operation's name, opcode and creates VMOp.
 OpConfig VMOpParser::parse(const std::string& line){
     std::vector<std::string> values{};
     split(line, values);
@@ -61,9 +61,11 @@ OpConfig VMOpParser::parse(const std::string& line){
         
     }
 
+    //! create operation
     auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, flags_config, values);
     LOG_OBJECT(*vmop)
 
+    //! return operation config
     int args_sz = vmop->get_args_sz();
     return OpConfig(opc, name, args_sz, std::move(vmop));
 }

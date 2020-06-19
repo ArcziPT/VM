@@ -1,8 +1,7 @@
 #include "VMBuilder.h"
+#include "Debug.h"
 
 #include <fstream>
-
-#include "Debug.h"
 
 std::unique_ptr<VM> VMBuilder::build(const std::string& config_path){
     this->config_path = config_path;

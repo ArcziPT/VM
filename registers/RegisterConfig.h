@@ -5,11 +5,15 @@
 
 #include "Register.h"
 
+
+/**
+ * \struct RegisterConfig contains information about registers of VM.
+ */
 struct RegisterConfig{
-    std::string name;
-    reg_sz sz;
-    reg_code code;
-    Register::Type type;
+    std::string name; //! name of register
+    reg_sz sz; //! register's size
+    reg_code code; //! register's code
+    Register::Type type; //! register's type
 
     #ifdef DEBUG_LOG
     friend std::ostream& operator<<(std::ostream& os, const RegisterConfig& reg_config);

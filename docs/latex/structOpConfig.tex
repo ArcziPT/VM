@@ -1,0 +1,50 @@
+\hypertarget{structOpConfig}{}\doxysection{Op\+Config Struct Reference}
+\label{structOpConfig}\index{OpConfig@{OpConfig}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structOpConfig_a0619978a98937f37acded539664e4134}{Op\+Config}} (opcode \mbox{\hyperlink{structOpConfig_abd635e543a97939ef27a774a621fe5c6}{opc}}, std\+::string \&name, int arg\+\_\+sz\+\_\+bytes, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classVMOp}{V\+M\+Op}} $>$ \mbox{\hyperlink{structOpConfig_ae67e55e6c78184974f40326ae0a326be}{vm\+\_\+op}})
+\item 
+\mbox{\Hypertarget{structOpConfig_a758d2b9db457e95676dd07dc5de01f2c}\label{structOpConfig_a758d2b9db457e95676dd07dc5de01f2c}} 
+\mbox{\hyperlink{structOpConfig}{Op\+Config}} \& {\bfseries operator=} (\mbox{\hyperlink{structOpConfig}{Op\+Config}} \&\&op\+\_\+config)
+\item 
+\mbox{\Hypertarget{structOpConfig_ade457d04df4dbfef9c536b3463fdc063}\label{structOpConfig_ade457d04df4dbfef9c536b3463fdc063}} 
+{\bfseries Op\+Config} (\mbox{\hyperlink{structOpConfig}{Op\+Config}} \&\&op\+\_\+config)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structOpConfig_abd635e543a97939ef27a774a621fe5c6}\label{structOpConfig_abd635e543a97939ef27a774a621fe5c6}} 
+opcode \mbox{\hyperlink{structOpConfig_abd635e543a97939ef27a774a621fe5c6}{opc}}
+\begin{DoxyCompactList}\small\item\em opcode \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structOpConfig_aec07f13ff477b29985453dd06d416472}\label{structOpConfig_aec07f13ff477b29985453dd06d416472}} 
+std\+::string \mbox{\hyperlink{structOpConfig_aec07f13ff477b29985453dd06d416472}{mnemonic}}
+\begin{DoxyCompactList}\small\item\em mnemonic \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structOpConfig_a20051d6867f9435308b23fb85a55a137}\label{structOpConfig_a20051d6867f9435308b23fb85a55a137}} 
+int \mbox{\hyperlink{structOpConfig_a20051d6867f9435308b23fb85a55a137}{args\+\_\+sz\+\_\+bytes}}
+\begin{DoxyCompactList}\small\item\em size of arguments in bytes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structOpConfig_ae67e55e6c78184974f40326ae0a326be}\label{structOpConfig_ae67e55e6c78184974f40326ae0a326be}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classVMOp}{V\+M\+Op}} $>$ \mbox{\hyperlink{structOpConfig_ae67e55e6c78184974f40326ae0a326be}{vm\+\_\+op}}
+\begin{DoxyCompactList}\small\item\em operation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+operation and its arguments. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structOpConfig_a0619978a98937f37acded539664e4134}\label{structOpConfig_a0619978a98937f37acded539664e4134}} 
+\index{OpConfig@{OpConfig}!OpConfig@{OpConfig}}
+\index{OpConfig@{OpConfig}!OpConfig@{OpConfig}}
+\doxysubsubsection{\texorpdfstring{OpConfig()}{OpConfig()}}
+{\footnotesize\ttfamily Op\+Config\+::\+Op\+Config (\begin{DoxyParamCaption}\item[{opcode}]{opc,  }\item[{std\+::string \&}]{name,  }\item[{int}]{arg\+\_\+sz\+\_\+bytes,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classVMOp}{V\+M\+Op}} $>$}]{vm\+\_\+op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+creates new operation config 
+\begin{DoxyParams}{Parameters}
+{\em vm\+\_\+op} & -\/ \mbox{\hyperlink{classVMOp}{V\+M\+Op}} (the operation itself), withgiven opcode \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+op/Op\+Config.\+h\end{DoxyCompactItemize}

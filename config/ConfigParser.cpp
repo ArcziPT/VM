@@ -11,9 +11,11 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     //init rpn calculator
     config->rpn_calc = std::make_unique<RPN_Calculator>();
 
+    //! split file into sections
+    //every line is a section and its name is specified at the begining 
     auto sections = split_into_sections(input);
 
-    //TODO: parse mem config
+    //! parse mem config
     if(sections.count("memory") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_MEM_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -22,6 +24,8 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     config->vmm = std::make_unique<VMMem>(stol(sections["memory"][0]));
     LOG_MSG("VMMem created - size: " + sections["memory"][0])
 
+
+    //! parse registers' config
     if(sections.count("regcode") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_REGC_SZ_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -29,13 +33,12 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
 
     config->reg_code_sz = stoi(sections["regcode"][0]);
 
-    //init Args::size_map
+    //init Args::size_map with register code size
     Args::size_map[Args::Type::R8] = config->reg_code_sz;
     Args::size_map[Args::Type::R16] = config->reg_code_sz;
     Args::size_map[Args::Type::R32] = config->reg_code_sz;
     Args::size_map[Args::Type::R64] = config->reg_code_sz;
 
-    //parse registers config
     if(sections.count("register") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_REG_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -54,6 +57,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     config->vmr = std::make_unique<VMRegisters>(registers);
 
     LOG_MSG("registers config parsed")
+
 
 
     //parse FLAGS
@@ -80,6 +84,7 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
         VMError::get_instance().print_msg_exit("ConfigParser");
     }
 
+    //create special functions for setting, unsetting and checking status of a flag
     auto set_flag = [&vmr = *(config->vmr), &flags_config = config->flags_config](const std::vector<reg_val>& args) -> reg_val{
         auto& flag_config = flags_config[args[0]];
         auto& reg = vmr[flag_config.register_name];
@@ -105,9 +110,12 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
         return (val & 0x1 << flag_config.pos);
     };
 
+    //regsiter them in vm's rpn_calc
     config->rpn_calc->add_function("set_flag", func_def(1, set_flag));
     config->rpn_calc->add_function("unset_flag", func_def(1, unset_flag));
     config->rpn_calc->add_function("isset_flag", func_def(1, isset_flag));
+
+
 
 
     //parse op config
@@ -128,6 +136,8 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     LOG_MSG("ops parsed")
 
 
+
+    //! parse screen config
     if(sections.count("screen") != 0){
         std::vector<std::string> t{};
         split(sections["screen"][0], t, ' ');

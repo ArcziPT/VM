@@ -12,11 +12,11 @@
 #include <functional>
 #include <variant>
 
-//calc_func_ptr is used by hardcoded function whereas dynamic ones make use of rpn_func_ptr
 using func_ptr = std::function<reg_val (const std::vector<reg_val>&)>;
-// using rpn_func_ptr = std::function<std::unique_ptr<RPN> (const std::vector<reg_val>&)>;
-// using func_ptr_variant = std::variant<calc_func_ptr, rpn_func_ptr>;
 
+//!
+//! \struct func_def - definition of function, which can be called by rpn_calculator
+//!
 struct func_def{
     func_def() = default;
     func_def(int arg_num, const func_ptr& func){
@@ -24,13 +24,17 @@ struct func_def{
         this->arg_num = arg_num;
     }
 
-    func_ptr func;
-    int arg_num;
+    func_ptr func; //! function
+    int arg_num; //! number of arguments
 };
 
-
+//!
+//! \class RPN_Calculator - calculates result of expression in rpn notation.
+//! If rpn contains fnctions' calls, then they are executed.
+//!
 class RPN_Calculator {
 public:
+    //! @param rpn - sequence of tokens representing expression in rpn notation to calculate.
     reg_val calculate(const RPN& rpn);
 
     void add_function(const std::string& name, func_def func);

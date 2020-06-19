@@ -1,0 +1,50 @@
+\hypertarget{classRegister}{}\doxysection{Register Class Reference}
+\label{classRegister}\index{Register@{Register}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRegister_a641b58529a451730764c52c9294f4f11}\label{classRegister_a641b58529a451730764c52c9294f4f11}} 
+enum {\bfseries Type} \{ {\bfseries G\+E\+N\+E\+R\+AL}, 
+{\bfseries IP}, 
+{\bfseries F\+L\+AG}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRegister_ae4c5f5d6a126e4daaa079b7f4a1cc0cd}\label{classRegister_ae4c5f5d6a126e4daaa079b7f4a1cc0cd}} 
+{\bfseries Register} (const std\+::string \&name, reg\+\_\+code code, reg\+\_\+sz sz, Type type)
+\item 
+\mbox{\Hypertarget{classRegister_aafc44731635419b8b4eebe0e1a15d341}\label{classRegister_aafc44731635419b8b4eebe0e1a15d341}} 
+void {\bfseries set\+\_\+value} (reg\+\_\+val value)
+\item 
+\mbox{\Hypertarget{classRegister_abe48ea482557ab2694dad56c0c456eef}\label{classRegister_abe48ea482557ab2694dad56c0c456eef}} 
+Register\+::\+Type {\bfseries get\+\_\+type} ()
+\item 
+\mbox{\Hypertarget{classRegister_a32071324126be1731af932a21029ad11}\label{classRegister_a32071324126be1731af932a21029ad11}} 
+reg\+\_\+val {\bfseries get\+\_\+value} ()
+\item 
+\mbox{\Hypertarget{classRegister_a8aae7cdf1a1c179cc621acb891436748}\label{classRegister_a8aae7cdf1a1c179cc621acb891436748}} 
+reg\+\_\+sz {\bfseries get\+\_\+sz} ()
+\item 
+\mbox{\Hypertarget{classRegister_aa640f78765b9fc435dc7e251953eae0d}\label{classRegister_aa640f78765b9fc435dc7e251953eae0d}} 
+std\+::string {\bfseries get\+\_\+name} ()
+\item 
+\mbox{\Hypertarget{classRegister_ad4ef7201398f28f2b4a649a9a07d4bdd}\label{classRegister_ad4ef7201398f28f2b4a649a9a07d4bdd}} 
+reg\+\_\+code {\bfseries get\+\_\+code} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classRegister_a7406183baf231683291eb3f315fb3a41}\label{classRegister_a7406183baf231683291eb3f315fb3a41}} 
+static std\+::map$<$ std\+::string, Type $>$ \mbox{\hyperlink{classRegister_a7406183baf231683291eb3f315fb3a41}{type\+\_\+map}} = \{\{\char`\"{}G\+EN\char`\"{}, Register\+::\+Type\+::\+G\+E\+N\+E\+R\+AL\}, \{\char`\"{}IP\char`\"{}, Register\+::\+Type\+::\+IP\}, \{\char`\"{}F\+L\+AG\char`\"{}, Register\+::\+Type\+::\+F\+L\+AG\}\}
+\begin{DoxyCompactList}\small\item\em maps string conatinig type name to Register\+::\+Type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+operations on registers. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+registers/Register.\+h\item 
+registers/Register.\+cpp\end{DoxyCompactItemize}

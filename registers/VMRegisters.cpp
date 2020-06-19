@@ -1,9 +1,12 @@
 #include "VMRegisters.h"
+#include "error/VMError.h"
 
 #include "Debug.h"
 
 VMRegisters::VMRegisters(const std::vector<Register>& registers){
     this->registers = registers;
+
+    //init maps
     for(auto& reg : this->registers){
         this->c_registers.insert({reg.get_code(), &reg});
         this->n_registers.insert({reg.get_name(), &reg});
@@ -16,13 +19,19 @@ VMRegisters::VMRegisters(const std::vector<Register>& registers){
 }
 
 Register& VMRegisters::operator[](reg_code r){
-    if(c_registers.count(r) == 0); //handle error
+    if(c_registers.count(r) == 0){
+        VMError::get_instance().set_error(VMError::Type::REGC_NOT_EXIST);
+        VMError::get_instance().print_msg_exit("VMRegisters");
+    }
 
     return *c_registers[r];
 }
 
 Register& VMRegisters::operator[](const std::string& r_name){
-    if(n_registers.count(r_name) == 0); //handle error
+    if(n_registers.count(r_name) == 0){
+        VMError::get_instance().set_error(VMError::Type::REGC_NOT_EXIST);
+        VMError::get_instance().print_msg_exit("VMRegisters");
+    }
 
     return *(n_registers[r_name]);
 }

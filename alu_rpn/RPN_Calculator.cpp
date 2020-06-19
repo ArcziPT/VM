@@ -40,7 +40,7 @@ reg_val RPN_Calculator::calculate(const RPN& rpn) {
                 }
 
                 double ret;
-                ret = def.func(args);
+                ret = def.func(args); //! call function
 
                 stack.push(ret);
                 break;

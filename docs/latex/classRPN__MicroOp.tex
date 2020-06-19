@@ -1,0 +1,106 @@
+\hypertarget{classRPN__MicroOp}{}\doxysection{R\+P\+N\+\_\+\+Micro\+Op Class Reference}
+\label{classRPN__MicroOp}\index{RPN\_MicroOp@{RPN\_MicroOp}}
+Inheritance diagram for R\+P\+N\+\_\+\+Micro\+Op\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRPN__MicroOp}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRPN__MicroOp_a8a26b9755f50a784bb6ed79bb8ef28c5}{R\+P\+N\+\_\+\+Micro\+Op}} (\mbox{\hyperlink{classRPN__Calculator}{R\+P\+N\+\_\+\+Calculator}} \&rpn\+\_\+calc, \mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} \&vmr, \mbox{\hyperlink{classVMMem}{V\+M\+Mem}} \&vmm, std\+::map$<$ std\+::string, \mbox{\hyperlink{structFlagConfig}{Flag\+Config}} $>$ \&flags\+\_\+config, const std\+::map$<$ std\+::string, \mbox{\hyperlink{structArgs_1_1Info}{Args\+::\+Info}} $>$ \&args\+Info, const std\+::string \&inst)
+\item 
+\mbox{\Hypertarget{classRPN__MicroOp_a1c6bcc9e2571bd3fc201d61ba6c3ea97}\label{classRPN__MicroOp_a1c6bcc9e2571bd3fc201d61ba6c3ea97}} 
+{\bfseries R\+P\+N\+\_\+\+Micro\+Op} (const \mbox{\hyperlink{classRPN__MicroOp}{R\+P\+N\+\_\+\+Micro\+Op}} \&rpn\+\_\+op)
+\item 
+void \mbox{\hyperlink{classRPN__MicroOp_a5c5f2b4a7a633e341649762da275df5a}{operator()}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&bytes)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classRPN__MicroOp_a4ff6656bfad3a6026a3e9f77989ecc7a}{calculate}} (const std\+::vector$<$ uint8\+\_\+t $>$ \&bytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+encoded as string to executable operation. Provides function to call the operation, which it wraps. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRPN__MicroOp_a8a26b9755f50a784bb6ed79bb8ef28c5}\label{classRPN__MicroOp_a8a26b9755f50a784bb6ed79bb8ef28c5}} 
+\index{RPN\_MicroOp@{RPN\_MicroOp}!RPN\_MicroOp@{RPN\_MicroOp}}
+\index{RPN\_MicroOp@{RPN\_MicroOp}!RPN\_MicroOp@{RPN\_MicroOp}}
+\doxysubsubsection{\texorpdfstring{RPN\_MicroOp()}{RPN\_MicroOp()}}
+{\footnotesize\ttfamily R\+P\+N\+\_\+\+Micro\+Op\+::\+R\+P\+N\+\_\+\+Micro\+Op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRPN__Calculator}{R\+P\+N\+\_\+\+Calculator}} \&}]{rpn\+\_\+calc,  }\item[{\mbox{\hyperlink{classVMRegisters}{V\+M\+Registers}} \&}]{vmr,  }\item[{\mbox{\hyperlink{classVMMem}{V\+M\+Mem}} \&}]{vmm,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{structFlagConfig}{Flag\+Config}} $>$ \&}]{flags\+\_\+config,  }\item[{const std\+::map$<$ std\+::string, \mbox{\hyperlink{structArgs_1_1Info}{Args\+::\+Info}} $>$ \&}]{args\+Info,  }\item[{const std\+::string \&}]{inst }\end{DoxyParamCaption})}
+
+create ne micro operation 
+\begin{DoxyParams}{Parameters}
+{\em rpn\+\_\+calc} & -\/ vm\textquotesingle{}s calculator which is used for executing micro operation \\
+\hline
+{\em vmr} & -\/ vm\textquotesingle{}s registers \\
+\hline
+{\em vmm} & -\/ vm\textquotesingle{}s memory \\
+\hline
+{\em flags\+\_\+config} & -\/ configuration of flags \\
+\hline
+{\em args\+Info} & -\/ information about operation\textquotesingle{}s operands \\
+\hline
+{\em inst} & -\/ string containing instruction\textquotesingle{}s code \\
+\hline
+\end{DoxyParams}
+empty instruction
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRPN__MicroOp_a4ff6656bfad3a6026a3e9f77989ecc7a}\label{classRPN__MicroOp_a4ff6656bfad3a6026a3e9f77989ecc7a}} 
+\index{RPN\_MicroOp@{RPN\_MicroOp}!calculate@{calculate}}
+\index{calculate@{calculate}!RPN\_MicroOp@{RPN\_MicroOp}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily reg\+\_\+val R\+P\+N\+\_\+\+Micro\+Op\+::calculate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{bytes }\end{DoxyParamCaption})}
+
+execute but return value 
+\begin{DoxyParams}{Parameters}
+{\em bytes} & -\/ operation\textquotesingle{}s operands\\
+\hline
+\end{DoxyParams}
+Replaces every token in rpn, with its value and then passes it to rpn\+\_\+calculator to get result. find value of every token in rpn
+
+only variables need to be find
+
+if it is pointer
+
+read pointed data
+
+variable is register\textquotesingle{}s name
+
+if it is pointer
+
+variable is F\+L\+AG\textquotesingle{}s name
+
+error\mbox{\Hypertarget{classRPN__MicroOp_a5c5f2b4a7a633e341649762da275df5a}\label{classRPN__MicroOp_a5c5f2b4a7a633e341649762da275df5a}} 
+\index{RPN\_MicroOp@{RPN\_MicroOp}!operator()@{operator()}}
+\index{operator()@{operator()}!RPN\_MicroOp@{RPN\_MicroOp}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void R\+P\+N\+\_\+\+Micro\+Op\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+execute 
+\begin{DoxyParams}{Parameters}
+{\em bytes} & -\/ operation\textquotesingle{}s operands\\
+\hline
+\end{DoxyParams}
+Calculates result of operation and saves it if save flag is set. saves result at memory address specified by dest using (sz)-\/bytes
+
+saves result in register with name specified by dest
+
+dest is argument\textquotesingle{}s name, so it has to be translated to register code
+
+dest is register\textquotesingle{}s name, so it can be used
+
+when saving to register check for overflow O\+V\+E\+R\+F\+L\+OW D\+E\+T\+E\+C\+T\+I\+ON
+
+retrive O\+V\+E\+R\+F\+L\+OW flag configuration and set it
+
+Implements \mbox{\hyperlink{classMicroOp_a11c0ce5f42ec06b3cea8217504ff1234}{Micro\+Op}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+op/R\+P\+N\+\_\+\+Micro\+Op.\+h\item 
+op/R\+P\+N\+\_\+\+Micro\+Op.\+cpp\end{DoxyCompactItemize}
