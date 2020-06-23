@@ -13,7 +13,7 @@ Run `make all` to build vm, or `make debug` to build vm with debug symbols and o
 
 ## Instructions
 
-Instruction on how to configure vm can be find in INST.md
+Instruction on how to configure vm can be find in [INST.md](INST.md).
 
 ## Example
 
