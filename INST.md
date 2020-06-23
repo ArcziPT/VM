@@ -75,8 +75,8 @@ Examples:
 
 Executable file should contain sequence of opcodes and its' arguments (in binary), which will be executed.
 Example:
-`01 a2 bc 06 cc cc ab cd 07 01`, size of opcode and register' code is 1, and we are using instruction from above example.
-	Steps:
-	Execute instruction with opcode 1, where first register is the one with code 0xa2 (beacuse size of register's code is 1), and second one with 0xbc.
-	Execute instruction with opcode 6, where x = 0xcc, y = 0xcc, t = 0xabcd.
-	Execute instruction with opcode 7, where x = 0x1.
+- `01 a2 bc 06 cc cc ab cd 07 01`, size of opcode and register' code is 1, and we are using instruction from above example.
+Steps:
+- Execute instruction with opcode 1, where first register is the one with code 0xa2 (beacuse size of register's code is 1), and second one with 0xbc.
+- Execute instruction with opcode 6, where x = 0xcc, y = 0xcc, t = 0xabcd.
+- Execute instruction with opcode 7, where x = 0x1.
