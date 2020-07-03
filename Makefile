@@ -15,7 +15,7 @@ all:
 	$(CC) $(IDIR) $(CFLAGS) $(SRC) ./vm_main/main.cpp $(LIBS) -o $(TARGET) 
 
 test:
-	$(CC) $(IDIR) $(CFLAGS) $(SRC) $(TEST_SRC) $(LIBS) $(TEST_LIBS) -o $(TARGET)
+	$(CC) $(IDIR) $(CFLAGS) $(SRC) $(TEST_SRC) $(LIBS) $(TEST_LIBS) -o $(TARGET)_test
 
 debug:
-	$(CC) -g -D DEBUG_LOG $(IDIR) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)d
+	$(CC) -g -D DEBUG_LOG $(IDIR) $(CFLAGS) $(SRC) ./vm_main/main.cpp $(LIBS) -o $(TARGET)_debug
