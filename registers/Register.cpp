@@ -26,6 +26,7 @@ Register::Register(const std::string& name, reg_code code, reg_sz sz, Type type)
             valid = true;
             break;
         default:
+            break;
     }
 
     if(!valid)
