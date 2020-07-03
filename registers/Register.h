@@ -25,9 +25,7 @@ public:
 
     static std::map<std::string, Type> type_map; //!< maps string conatinig type name to Register::Type
 
-    Register(const std::string& name, reg_code code,
-                            reg_sz sz, Type type) : name(name), code(code),
-                                                        sz(sz), type(type) {};
+    Register(const std::string& name, reg_code code, reg_sz sz, Type type));
     
     void set_value(reg_val value);
     Register::Type get_type();
