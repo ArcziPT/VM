@@ -6,6 +6,8 @@ Virtual Machine with customizable ISA (Intsruction Set Architecture) and registe
 
 Run `make all` to build vm, or `make debug` to build vm with debug symbols and output.
 
+`make test` to build tests ([TESTS](/tests)).
+
 ### Prerequisites
 
 - [SDL2](https://www.libsdl.org/download-2.0.php)
