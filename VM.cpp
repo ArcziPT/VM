@@ -36,8 +36,8 @@ void VM::run(const std::string& exe_path, mem_add start_add){
         //! ilegal instruction
         if(config->ops_symtable.count(opc) == 0){
             //wait before exit to allow to see screen
-            using namespace std::chrono_literals;
-            std::this_thread::sleep_for(10s);
+            //using namespace std::chrono_literals;
+            //std::this_thread::sleep_for(10s);
 
             VMError::get_instance().set_error(VMError::Type::ILLEGAL_OP);
             VMError::get_instance().print_msg_exit("VM");

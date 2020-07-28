@@ -1,0 +1,16 @@
+1. VMBuilder creates VM instance, using VMConfig based on provided configuration file.
+
+2. VMConfig parses configuration file:
+    - memory
+    - registers
+    - screen
+    - flags
+    - instructions
+
+3. Instruction definitions are parsed by VMParser. It creates instances of VMOp, which is built from several MicroOps (RPN or Conditional).
+When VMOp is called, it executes every MicroOp it has. MicroOps are place where actual operation takes place.
+When they are created, they decode information about their arguments for later use and create incomplete RPN, because it needs to be filled with actual variables' values.
+Given collection of bytes, it initializes its arguments' values and using RPN_Calculator calculates result of RPN.
+
+4. RPN_Calculator is not only calculator, but it can also call other functions based on RPN. (example: 2+3*func(1,2) -> 1, 2, func, 3, *, 2; calls func(1,2))
+It maps string to functions of predefined form, it can be provided with custom functions, that can be used in instruction declarations.

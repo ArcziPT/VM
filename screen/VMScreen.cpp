@@ -26,8 +26,8 @@ VMScreen::VMScreen(int width, int height) : width(width), height(height){
 
 VMScreen::~VMScreen(){
     //DEBUG
-    using namespace std::chrono_literals;
-    std::this_thread::sleep_for(10s);
+    //using namespace std::chrono_literals;
+    //std::this_thread::sleep_for(10s);
 
     quit = true;
     main_thread.join();

@@ -30,7 +30,6 @@ TEST_F(RegisterTest, RegisterDataTest){
 }
 
 
-
 struct RegisterValueState{
     reg_val init;
     reg_val add;

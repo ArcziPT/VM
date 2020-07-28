@@ -6,8 +6,12 @@
 
 //Converts instruction in infix notation to rpn.
 //If it contains assigment, then find the destination of it. 
-RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, const std::map<std::string, Args::Info>& argsInfo, const std::string& inst)
-                                        : rpn_calc(rpn_calc), vmr(vmr), vmm(vmm), flags_config(flags_config), argsInfo(argsInfo){
+RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, 
+                        VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, 
+                        const std::map<std::string, Args::Info>& argsInfo, 
+                        const std::string& inst) : rpn_calc(rpn_calc), 
+                        vmr(vmr), vmm(vmm), flags_config(flags_config), 
+                        argsInfo(argsInfo){
 
     /// empty instruction
     if(inst.empty()){
