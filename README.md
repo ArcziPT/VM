@@ -1,6 +1,7 @@
 # Virtual Machine
 
-Virtual Machine with customizable ISA (Intsruction Set Architecture) and registers to some extent, and basic screen.
+Virtual Machine with customizable ISA (Intsruction Set Architecture), registers and basic screen.
+It enables user to create their own opcodes/operations, instructions' implementation, or creating config such that VM imitates well known architectures( like x86, risc-v) to some extent, but everything is not possible.
 
 ## Getting Started
 
