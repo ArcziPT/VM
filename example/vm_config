@@ -1,6 +1,6 @@
 memory 4096
 screen 1920 1080
-font /usr/share/fonts/truetype/freefont/FreeMono.ttf 12
+font <path> 12
 
 regcode 1
 

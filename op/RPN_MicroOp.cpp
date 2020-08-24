@@ -102,6 +102,7 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
 
             //! when saving to register check for overflow
             //! OVERFLOW DETECTION
+            //TODO: move it to registers' code
             if(res >> vmr[dest].get_sz() > 0){
                 //! retrive OVERFLOW flag configuration and set it
                 auto flag_config = flags_config["OVERFLOW"];
