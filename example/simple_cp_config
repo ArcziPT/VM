@@ -1,0 +1,36 @@
+memory 4096
+screen 1280 720
+font /usr/share/fonts/truetype/freefont/FreeMono.ttf 12
+
+regcode 1
+
+register 0 R00 IP 32
+register 1 R01 GEN 32
+register 2 R02 FLAG 32
+register 3 R03 GEN 32
+register 4 R04 GEN 32
+register 5 R05 GEN 32
+register 6 R06 GEN 32
+register 7 R07 GEN 32
+register 8 R08 GEN 32
+
+FLAG OVERFLOW R02 0
+
+opcode 1
+
+inst 1 add r32#r1,r32#r2 r1=r1+r2
+inst 2 add r32#r1,m32#m1 r1=r1+[m1]
+inst 3 sub r32#r1,r32#r2 r1=r1-r2
+inst 4 sub r32#r1,m32#m1 r1=r1-[m1]
+inst 5 set r32#r,i32#i r=i
+inst 10 load r32#r,m32#m r=[m]
+inst 11 str r32#r,m32#m [m]=r
+inst 20 jmp m32#m R00=m
+inst 21 jne r32#r1,r32#r2,m32#m (r1-r2)?(R00=m):()
+inst 22 je r32#r1,r32#r2,m32#m (r1-r2)?():(R00=m)
+inst 30 xor r32#r1,r32#r2 r1=r1^r2
+inst 31 and r32#r1,r32#r2 r1=r1&r2
+inst 32 or r32#r1,r32#r2 r1=r1|r2
+inst 33 not r32#r1 r1=!r1
+inst 40 call m32#m R01=R01+4;[R01]=R00;R00=m
+inst 41 ret i8#i R00=[R01];R01=R01-4
