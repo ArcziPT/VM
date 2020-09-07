@@ -22,13 +22,13 @@ private:
     Sections split_into_sections(const std::string& input);
     RegisterConfig parse_reg_config(const std::string& input);
 
-    void parse_mem_config(const Sections& sections);
-    void parse_register_config(const Sections& sections);
-    void parse_flag_config(const Sections& sections);
-    void parse_op_config(const Sections& sections);
-    void parse_screen_config(const Sections& sections);
+    void parse_mem_config(Sections& sections, const std::unique_ptr<VMConfig>& config);
+    void parse_register_config(Sections& sections, const std::unique_ptr<VMConfig>& config);
+    void parse_flag_config(Sections& sections, const std::unique_ptr<VMConfig>& config);
+    void parse_op_config(Sections& sections, const std::unique_ptr<VMConfig>& config);
+    void parse_screen_config(Sections& sections, const std::unique_ptr<VMConfig>& config);
 
-    void add_flag_functions();
+    void add_flag_functions(const std::unique_ptr<VMConfig>& config);
 };
 
 #endif

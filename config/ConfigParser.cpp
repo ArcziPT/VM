@@ -15,15 +15,15 @@ std::unique_ptr<VMConfig> ConfigParser::parse(const std::string& input){
     //every line is a section and its name is specified at the begining 
     auto sections = split_into_sections(input);
 
-    parse_mem_config(sections);
-    parse_reg_config(sections);
-    parse_flag_config(sections);
+    parse_mem_config(sections, config);
+    parse_register_config(sections, config);
+    parse_flag_config(sections, config);
 
     //create special functions for setting, unsetting and checking status of a flag
-    add_flag_functions();
+    add_flag_functions(config);
 
-    parse_op_config(sections);
-    parse_screen_config(sections);
+    parse_op_config(sections, config);
+    parse_screen_config(sections, config);
 
     return config;
 }
@@ -85,7 +85,7 @@ RegisterConfig ConfigParser::parse_reg_config(const std::string& input){
     return reg_config;
 }
 
-void ConfigParser::parse_mem_config(const Sections& sections){
+void ConfigParser::parse_mem_config(Sections& sections, const std::unique_ptr<VMConfig>& config){
     if(sections.count("memory") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_MEM_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -95,7 +95,7 @@ void ConfigParser::parse_mem_config(const Sections& sections){
     LOG_MSG("VMMem created - size: " + sections["memory"][0])
 }
 
-void ConfigParser::parse_register_config(const Sections& Sections){
+void ConfigParser::parse_register_config(Sections& sections, const std::unique_ptr<VMConfig>& config){
     if(sections.count("regcode") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_REGC_SZ_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -131,7 +131,7 @@ void ConfigParser::parse_register_config(const Sections& Sections){
     LOG_MSG("registers config parsed")
 }
 
-void ConfigParser::parse_flag_config(const Sections& sections){
+void ConfigParser::parse_flag_config(Sections& sections, const std::unique_ptr<VMConfig>& config){
     if(sections.count("FLAG") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_FLAGS_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -156,7 +156,7 @@ void ConfigParser::parse_flag_config(const Sections& sections){
     }
 }
 
-void ConfigParser::add_flag_functions(){
+void ConfigParser::add_flag_functions(const std::unique_ptr<VMConfig>& config){
     auto set_flag = [&vmr = *(config->vmr), &flags_config = config->flags_config](const std::vector<reg_val>& args) -> reg_val{
         auto& flag_config = flags_config[args[0]];
         auto& reg = vmr[flag_config.register_name];
@@ -188,7 +188,7 @@ void ConfigParser::add_flag_functions(){
     config->rpn_calc->add_function("isset_flag", func_def(1, isset_flag));
 }
 
-void ConfigPraser::parse_op_config(const Sections& sections){
+void ConfigParser::parse_op_config(Sections& sections, const std::unique_ptr<VMConfig>& config){
     if(sections.count("opcode") == 0){
         VMError::get_instance().set_error(VMError::Type::NO_OP_CONFIG);
         VMError::get_instance().print_msg_exit("ConfigParser");
@@ -206,7 +206,7 @@ void ConfigPraser::parse_op_config(const Sections& sections){
     LOG_MSG("ops parsed")
 }
 
-void ConfigParser::parse_screen_config(const Sections& sections){
+void ConfigParser::parse_screen_config(Sections& sections, const std::unique_ptr<VMConfig>& config){
     if(sections.count("screen") != 0){
         std::vector<std::string> t{};
         split(sections["screen"][0], t, ' ');
