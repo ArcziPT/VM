@@ -47,6 +47,9 @@ std::unordered_map<std::string, std::vector<std::string>> ConfigParser::split_in
     std::string section_name = "";
     std::string section;
     for(auto& line : lines){
+        if(line[0] == '#')
+            continue;
+
         int pos = line.find(' ');
         if(pos != std::string::npos){
             section_name = std::string(line.begin(), line.begin() + pos);

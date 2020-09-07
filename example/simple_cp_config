@@ -1,9 +1,17 @@
+#set memory size to 4096B
 memory 4096
+#set screen 1280x720
 screen 1280 720
+
+#specify font to use by screen and size
 font /usr/share/fonts/truetype/freefont/FreeMono.ttf 12
 
+
+#size in bytes of register's code
 regcode 1
 
+
+#register code name type size
 register 0 R00 IP 32
 register 1 R01 GEN 32
 register 2 R02 FLAG 32
@@ -14,23 +22,49 @@ register 6 R06 GEN 32
 register 7 R07 GEN 32
 register 8 R08 GEN 32
 
+
+#create flags
+#FLAG name register position
 FLAG OVERFLOW R02 0
 
+
+#size of opcode
 opcode 1
 
+
+#inst opcode name args inst1;inst2;inst3;...
+
+#add values from registers with codes r1, r2 and save it to r1
 inst 1 add r32#r1,r32#r2 r1=r1+r2
+#add values from register r1 and memory address pointed by m and save it to r1
 inst 2 add r32#r1,m32#m1 r1=r1+[m1]
 inst 3 sub r32#r1,r32#r2 r1=r1-r2
 inst 4 sub r32#r1,m32#m1 r1=r1-[m1]
+#set register r to i
 inst 5 set r32#r,i32#i r=i
+#load value from memory address m to register with code r
 inst 10 load r32#r,m32#m r=[m]
+#store
 inst 11 str r32#r,m32#m [m]=r
+#jmp to address m
+#R00 is used as IP, so assigning m to R00 causes jump
 inst 20 jmp m32#m R00=m
+#jump not equal
+#If (r1-r2) != 0 then jump, else do nothing
 inst 21 jne r32#r1,r32#r2,m32#m (r1-r2)?(R00=m):()
+#jump equal
 inst 22 je r32#r1,r32#r2,m32#m (r1-r2)?():(R00=m)
+
+#logic
 inst 30 xor r32#r1,r32#r2 r1=r1^r2
 inst 31 and r32#r1,r32#r2 r1=r1&r2
 inst 32 or r32#r1,r32#r2 r1=r1|r2
 inst 33 not r32#r1 r1=!r1
+#call function at memory address m
+#R01 is used as stack pointer
+#Increase stack by 32bits (shift it 4B) and place current IP value there
+#update IP
 inst 40 call m32#m R01=R01+4;[R01]=R00;R00=m
+#Pop return address from stack
+#And shorten stack
 inst 41 ret i8#i R00=[R01];R01=R01-4
