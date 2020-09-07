@@ -1,6 +1,7 @@
 # Virtual Machine
 
-Virtual Machine with customizable ISA (Intsruction Set Architecture) and registers to some extent, and basic screen.
+Virtual Machine with customizable ISA (Intsruction Set Architecture), registers and basic screen.
+It enables user to create their own opcodes/operations, instructions' implementation, or creating config such that VM imitates well known architectures( like x86, risc-v) to some extent, but everything is not possible.
 
 ## Getting Started
 
@@ -22,6 +23,9 @@ Instruction on how to configure vm can be find in [INST.md](INST.md).
 In folder /example you can find two files:
 - [vm_config](/example/vm_config) (contains example configuration of vm: registers, operations, screen)
 - exe (executable file for vm, contains binary data, which encodes opcodes followed by its arguments, which were defined in vm_config)
+
+### How to use them?
+Before using them, in [vm_config](example/config) replace "path" with actual path to font, then run `./vm example/vm_config example/exe`.
 
 ## Documentation
 
