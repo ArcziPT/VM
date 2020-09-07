@@ -19,6 +19,8 @@ VMRegisters::VMRegisters(const std::vector<Register>& registers){
 }
 
 Register& VMRegisters::operator[](reg_code r){
+    LOG_MSG("VMRegisters[" + std::to_string(r) + "]")
+
     if(c_registers.count(r) == 0){
         VMError::get_instance().set_error(VMError::Type::REGC_NOT_EXIST);
         VMError::get_instance().print_msg_exit("VMRegisters");
@@ -28,6 +30,8 @@ Register& VMRegisters::operator[](reg_code r){
 }
 
 Register& VMRegisters::operator[](const std::string& r_name){
+    LOG_MSG("VMRegisters[" + r_name + "]")
+    
     if(n_registers.count(r_name) == 0){
         VMError::get_instance().set_error(VMError::Type::REGC_NOT_EXIST);
         VMError::get_instance().print_msg_exit("VMRegisters");

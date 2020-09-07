@@ -5,7 +5,7 @@
 #include "Debug.h"
 
 //Builds array of operands' information and then creates appropiate micro operations.
-VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values): vmr(vmr), vmm(vmm), flags_config(flags_config){
+VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values, const std::string& name): vmr(vmr), vmm(vmm), flags_config(flags_config), name(name){
     std::vector<std::string> args;
     std::vector<std::string> instructions;
     split(values[2], args, ','); //! arguments' declarations are separated by ','
@@ -88,8 +88,9 @@ VMOp::VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std:
 
 //! execute sequence of micro operations
 void VMOp::operator()(std::vector<uint8_t>& bytes){
+    LOG_MSG("################ OP " + name + " ################")
     for(auto& microOp : microOps){
-        LOG_MSG("microop called")
+        LOG_MSG("Microop called:")
         (*microOp)(bytes);
     }
 }

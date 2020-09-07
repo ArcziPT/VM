@@ -48,6 +48,7 @@ private:
 
     bool saveResult = false; //!< instruction contains assigment statement
     std::string dest; //!< assigment' destination (arg's name or register's name, ...)
+    bool ptr = false;
 };
 
 #endif

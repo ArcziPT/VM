@@ -28,6 +28,12 @@ RPN_MicroOp::RPN_MicroOp(RPN_Calculator& rpn_calc, VMRegisters& vmr,
     if(temp.size() == 2){
         saveResult = true; //when operation is executed we will save result
         dest = temp[0]; //to place, where dest points.
+
+        if(dest[0] == '[' && dest[dest.size()-1] == ']'){
+            ptr = true;
+            dest = dest.substr(1, dest.size()-2);
+        }
+
         rpn = rpn_converter.convert(temp[1]);
     }else{
         rpn = rpn_converter.convert(temp[0]);
@@ -60,7 +66,14 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
             add << 8;
             add += bytes[i];
         }
-        vmm.set(add, res, sz);
+
+        if(ptr){
+            LOG_MSG("Save in memory (mem ptr)")
+            add = vmm.read(add, sz);
+        }else{
+            LOG_MSG("Save in memory")
+        }
+        vmm.set(add, (reg_val)res, sz);
     };
 
     //! saves result in register with name specified by dest
@@ -70,7 +83,16 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
             code << 8;
             code += bytes[i];
         }
-        vmr[code].set_value(res);
+
+        if(!ptr){
+            LOG_MSG("Save in register");
+            vmr[code].set_value(res);
+        }
+        else{
+            LOG_MSG("Save in memory (register ptr)")
+            auto add = vmr[code].get_value();
+            vmm.set(add, (reg_val)res, vmr[code].get_sz()/8);
+        }
     };
 
     //if micro opeartion contains assigment
@@ -102,7 +124,15 @@ void RPN_MicroOp::operator()(const std::vector<uint8_t>& bytes){
 
         //! dest is register's name, so it can be used
         }else{
-            vmr[dest].set_value(res);
+            if(ptr){
+                LOG_MSG("Save in memory (reg ptr)")
+                auto add = vmr[dest].get_value();
+                vmm.set(add, (reg_val)res, vmr[dest].get_sz()/8);
+            }
+            else{
+                LOG_MSG("Save in register")
+                vmr[dest].set_value(res);
+            }
 
             //! when saving to register check for overflow
             //! OVERFLOW DETECTION
@@ -137,7 +167,7 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
                     t += bytes[argsInfo[token.data].pos + i];
                 }
 
-                int sz = 8; //size in bytes of value pointed by token.val
+                int sz = 1; //size in bytes of value pointed by token.val
                 switch(argsInfo[token.data].type){
                     case Args::Type::I64:
                         sz *= 2;
@@ -197,6 +227,7 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
                 VMError::get_instance().set_error(VMError::Type::INVALID_ARG);
                 VMError::get_instance().print_msg_exit("RPN_MicroOp");
             }
+            LOG_OBJECT(token.ptr)
             LOG_OBJECT(token.data)
             LOG_OBJECT(token.val)
         }

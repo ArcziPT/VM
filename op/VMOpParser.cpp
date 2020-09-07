@@ -50,8 +50,8 @@ OpConfig VMOpParser::parse(const std::string& line){
     }
     catch(const std::exception& e){
         std::cout<<"Invalid argument for opcode (not a number) in:\n"<<line<<std::endl;
-        std::cout<<"Continue without it?[y/n]";
-        std::string r;
+        std::cout<<"Continue without it?[Y/n]";
+        std::string r = "y";
         std::cin>>r;
         
         if(r == "y")
@@ -62,7 +62,7 @@ OpConfig VMOpParser::parse(const std::string& line){
     }
 
     //! create operation
-    auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, flags_config, values);
+    auto vmop = std::make_unique<VMOp>(rpn_calc, vmr, vmm, flags_config, values, name);
     LOG_OBJECT(*vmop)
 
     //! return operation config

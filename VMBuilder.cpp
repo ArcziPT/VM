@@ -10,7 +10,7 @@ std::unique_ptr<VM> VMBuilder::build(const std::string& config_path){
     auto config = parser.parse(config_file);
     auto vm = std::make_unique<VM>(std::move(config));
 
-    LOG_MSG("vm built")
+    LOG_MSG("VM built")
 
     return vm;
 }

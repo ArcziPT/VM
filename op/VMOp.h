@@ -20,7 +20,7 @@ public:
     //! @param vmm reference to vm's memory
     //! @param flags_config reference to configuration of flags
     //! @param values array of strings conatining arguments' declarations and sequence of microops' instructions
-    VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values);
+    VMOp(RPN_Calculator& rpn_calc, VMRegisters& vmr, VMMem& vmm, std::map<std::string, FlagConfig>& flags_config, std::vector<std::string>& values, const std::string& name);
 
     //! execute
     //! @param bytes - operands
@@ -41,6 +41,8 @@ private:
     int args_sz; //!< arguments' size
 
     std::vector<std::unique_ptr<MicroOp>> microOps; //!< array of micro operations
+
+    std::string name;
 };
 
 #endif
