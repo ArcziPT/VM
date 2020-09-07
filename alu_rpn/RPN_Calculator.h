@@ -44,7 +44,10 @@ private:
                                                 {"-", {2, &default_funcs::sub}},
                                                 {"*", {2, &default_funcs::mul}},
                                                 {"/", {2, &default_funcs::div}},
-                                                {"^", {2, &default_funcs::xorr}}};
+                                                {"^", {2, &default_funcs::xorr}},
+                                                {"&", {2, &default_funcs::andr}},
+                                                {"|", {2, &default_funcs::orr}},
+                                                {"!", {1, &default_funcs::notr}}};
 };
 
 
