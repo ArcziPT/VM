@@ -215,7 +215,7 @@ reg_val RPN_MicroOp::calculate(const std::vector<uint8_t>& bytes){
                 
                 //! if it is pointer
                 if(token.ptr){
-                    token.val = vmm.read(token.val, vmr[token.data].get_sz());
+                    token.val = vmm.read(token.val, vmr[token.data].get_sz()/8);
                 }
 
             //! variable is FLAG's name
